@@ -19,14 +19,11 @@
 
         body { background-color: var(--bg-color); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; }
 
-        header {
-            background: #0b172a; border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding: 18px 24px; text-align: center;
-        }
+        header { background: #0b172a; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 18px 24px; text-align: center; }
         .logo { font-size: 22px; font-weight: 900; color: #ffffff; text-decoration: none; letter-spacing: -0.5px; }
         .logo span { color: var(--accent); }
 
-        main { flex: 1; max-width: 560px; width: 100%; margin: 36px auto; padding: 0 20px; }
+        main { flex: 1; max-width: 580px; width: 100%; margin: 36px auto; padding: 0 20px; }
 
         .card {
             background-color: var(--card-bg); border: 1px solid var(--border-color);
@@ -34,12 +31,12 @@
         }
 
         h1 { font-size: 24px; font-weight: 900; color: var(--primary); margin-bottom: 8px; letter-spacing: -0.5px; }
-        p { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+        p { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
 
         .selected-date-badge {
             display: inline-block; background: #fdf8e6; color: var(--primary);
             border: 1px solid rgba(212, 175, 55, 0.4); font-size: 13px; font-weight: 800;
-            padding: 8px 18px; border-radius: 50px; margin-bottom: 28px;
+            padding: 10px 20px; border-radius: 50px; margin-bottom: 28px;
         }
 
         .form-group { margin-bottom: 20px; text-align: left; }
@@ -48,12 +45,10 @@
             width: 100%; padding: 13px 14px; border-radius: 10px; border: 1px solid var(--border-color);
             background-color: #ffffff; color: var(--text-main); font-size: 14px; outline: none; transition: border-color 0.2s;
         }
-        input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, select:focus {
-            border-color: var(--primary);
-        }
+        input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, select:focus { border-color: var(--primary); }
 
         .btn {
-            background-color: var(--accent); color: #0b172a; border: none; padding: 15px;
+            background-color: var(--accent); color: #0b172a; border: none; padding: 16px;
             font-size: 15px; font-weight: 800; border-radius: 10px; cursor: pointer; display: block; width: 100%; transition: all 0.2s;
         }
         .btn:hover { background-color: #c49f2c; }
@@ -110,7 +105,7 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn">Lock In Preferences & Get Pass 🔐</button>
+                <button type="submit" class="btn">Lock In Preferences & Open Portal 🔐</button>
             </form>
         </div>
     </main>
@@ -133,7 +128,7 @@
         document.getElementById('preferencesForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const submitBtn = e.target.querySelector('button');
-            submitBtn.textContent = "Saving & Emailing Pass...";
+            submitBtn.textContent = "Saving & Generating Passcode...";
             submitBtn.disabled = true;
 
             const payload = {
@@ -147,19 +142,21 @@
             };
 
             fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST", mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
+                method: "POST", mode: "cors",
+                headers: { "Content-Type": "text/plain" },
                 body: JSON.stringify(payload)
             })
-            .then(() => {
-                alert('Preferences locked in! Check your email for your date passcode.');
-                window.location.href = "/tracker/";
+            .then(res => res.json())
+            .then(data => {
+                if (data.trackingCode) {
+                    window.location.href = "/tracker/?code=" + encodeURIComponent(data.trackingCode);
+                } else {
+                    window.location.href = "/tracker/";
+                }
             })
             .catch(err => {
                 console.error(err);
-                alert('An error occurred while saving preferences. Please try again.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Lock In Preferences & Get Pass 🔐";
+                window.location.href = "/tracker/";
             });
         });
     </script>

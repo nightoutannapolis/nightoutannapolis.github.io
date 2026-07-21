@@ -1,14 +1,14 @@
 :root {
-    --bg-color: #f6f8fb;
+    --bg-color: #f4f7f6;
     --card-bg: #ffffff;
-    --primary: #111c2e;     /* Favicon Navy */
-    --accent: #d8a236;      /* Favicon Moon Gold */
-    --coral: #e63956;       /* Palette Coral Rose */
-    --sage: #d1e9d2;        /* Palette Sage Mint */
-    --slate: #43505c;       /* Palette Slate Gray */
-    --text-main: #111c2e;
-    --text-muted: #43505c;
-    --border-color: #e2e8f0;
+    --primary: #0a222e;     /* Midnight Teal/Navy */
+    --accent: #e6b800;      /* Warm Amber Gold */
+    --coral: #ff5a5f;       /* Sunset Coral */
+    --sage: #e0f2f1;        /* Mint Ice */
+    --slate: #37474f;       /* Deep Steel Gray */
+    --text-main: #0a222e;
+    --text-muted: #37474f;
+    --border-color: #d1dbe0;
 }
 
 html { 
@@ -83,7 +83,7 @@ header {
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-    background: linear-gradient(rgba(17, 28, 46, 0.88), rgba(17, 28, 46, 0.88)), 
+    background: linear-gradient(rgba(10, 34, 46, 0.88), rgba(10, 34, 46, 0.88)), 
                 url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
     color: #ffffff; 
     text-align: center; 
@@ -92,7 +92,7 @@ header {
 }
 .hero-badge {
     display: inline-block; 
-    background: rgba(216, 162, 54, 0.2); 
+    background: rgba(230, 184, 0, 0.2); 
     color: var(--accent);
     font-size: 12px; 
     font-weight: 800; 
@@ -113,7 +113,7 @@ header {
 }
 .hero p { 
     font-size: 18px; 
-    color: #cbd5e1; 
+    color: #cfd8dc; 
     max-width: 650px; 
     margin: 0 auto 36px auto; 
     font-weight: 400; 
@@ -176,13 +176,13 @@ section {
     margin-bottom: 38px; 
 }
 
-/* FLUID RESPONSIVE GRID (3-ACROSS WHEN SPACE PERMITS) */
+/* FLUID RESPONSIVE GRID */
 .card {
     background-color: var(--card-bg); 
     border: 1px solid var(--border-color);
     border-radius: 20px; 
     padding: 40px 32px; 
-    box-shadow: 0 10px 30px rgba(17, 28, 46, 0.04);
+    box-shadow: 0 10px 30px rgba(10, 34, 46, 0.04);
 }
 .grid-3 { 
     display: grid; 
@@ -195,7 +195,7 @@ section {
     border: 1px solid var(--border-color); 
     border-radius: 18px; 
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(17, 28, 46, 0.04); 
+    box-shadow: 0 4px 16px rgba(10, 34, 46, 0.04); 
     text-align: left;
 }
 .card-img { 
@@ -226,7 +226,7 @@ section {
     border-top: 4px solid var(--accent);
     border-radius: 18px; 
     padding: 24px; 
-    box-shadow: 0 4px 16px rgba(17, 28, 46, 0.03);
+    box-shadow: 0 4px 16px rgba(10, 34, 46, 0.03);
 }
 .stars { 
     color: var(--coral); 
@@ -235,7 +235,7 @@ section {
 }
 .review-text { 
     font-size: 13.5px; 
-    color: #334155; 
+    color: #37474f; 
     font-style: italic; 
     margin-bottom: 14px; 
     line-height: 1.6; 
@@ -299,7 +299,7 @@ section {
     border: 1px solid var(--border-color); 
     border-radius: 18px; 
     padding: 32px; 
-    box-shadow: 0 4px 16px rgba(17, 28, 46, 0.03); 
+    box-shadow: 0 4px 16px rgba(10, 34, 46, 0.03); 
 }
 .sample-step { 
     display: flex; 
@@ -335,7 +335,7 @@ section {
     border: 1px solid var(--border-color); 
     border-radius: 20px;
     padding: 40px 32px; 
-    box-shadow: 0 10px 30px rgba(17, 28, 46, 0.05); 
+    box-shadow: 0 10px 30px rgba(10, 34, 46, 0.05); 
     max-width: 580px; 
     margin: 0 auto; 
     text-align: center;
@@ -406,15 +406,15 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, se
     background: var(--primary); 
     color: #ffffff; 
     transform: translateY(-2px); 
-    box-shadow: 0 6px 16px rgba(17, 28, 46, 0.12); 
+    box-shadow: 0 6px 16px rgba(10, 34, 46, 0.12); 
 }
 .time-slot.available:hover .time-sub { 
-    color: #cbd5e1; 
+    color: #cfd8dc; 
 }
 .time-slot.soldout { 
-    background: #fbfbf9; 
-    border: 1px solid #e2e8f0; 
-    color: #94a3b8; 
+    background: #f4f7f6; 
+    border: 1px solid #d1dbe0; 
+    color: #90a4ae; 
     cursor: not-allowed; 
     opacity: 0.7; 
 }
@@ -430,8 +430,8 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, se
 }
 .soldout-badge { 
     display: inline-block; 
-    background: #e2e8f0; 
-    color: #64748b; 
+    background: #d1dbe0; 
+    color: #546e7a; 
     font-size: 10px; 
     font-weight: 800; 
     padding: 3px 10px; 
@@ -443,7 +443,7 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, se
 /* TRACKER TIMELINE */
 .portal-header {
     background: var(--sage); 
-    border: 1px solid rgba(17, 28, 46, 0.1); 
+    border: 1px solid rgba(10, 34, 46, 0.1); 
     border-radius: 14px;
     padding: 18px; 
     text-align: center; 
@@ -474,14 +474,14 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, se
     transition: all 0.3s;
 }
 .timeline-step.unlocked .timeline-node { 
-    background: #16a34a; 
-    border-color: #16a34a; 
-    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.2); 
+    background: #2e7d32; 
+    border-color: #2e7d32; 
+    box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.2); 
 }
 .timeline-step.active .timeline-node { 
     background: var(--accent); 
     border-color: var(--accent); 
-    box-shadow: 0 0 0 4px rgba(216, 162, 54, 0.3); 
+    box-shadow: 0 0 0 4px rgba(230, 184, 0, 0.3); 
 }
 .timeline-card {
     background: #ffffff; 
@@ -491,13 +491,13 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, se
     transition: all 0.2s;
 }
 .timeline-step.unlocked .timeline-card { 
-    border-color: #16a34a; 
-    background: #f0fdf4; 
+    border-color: #2e7d32; 
+    background: #f1f8e9; 
 }
 .timeline-step.active .timeline-card { 
     border-color: var(--accent); 
     background: #ffffff; 
-    box-shadow: 0 6px 20px rgba(17, 28, 46, 0.06); 
+    box-shadow: 0 6px 20px rgba(10, 34, 46, 0.06); 
 }
 .step-tag { 
     font-size: 11px; 
@@ -506,13 +506,13 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, se
     letter-spacing: 0.5px; 
     margin-bottom: 4px; 
 }
-.unlocked .step-tag { color: #16a34a; }
+.unlocked .step-tag { color: #2e7d32; }
 .active .step-tag { color: var(--accent); }
 .locked .step-tag { color: var(--text-muted); }
 
 .countdown-box {
-    background: #fbf8eb; 
-    border: 1px solid rgba(216, 162, 54, 0.4);
+    background: #fffde7; 
+    border: 1px solid rgba(230, 184, 0, 0.4);
     border-radius: 10px; 
     padding: 12px; 
     text-align: center; 
@@ -535,7 +535,7 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, se
 }
 .pillar-card { 
     background: var(--sage); 
-    border: 1px solid rgba(17, 28, 46, 0.1); 
+    border: 1px solid rgba(10, 34, 46, 0.1); 
     border-radius: 14px; 
     padding: 22px; 
 }
@@ -554,7 +554,7 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, se
 
 .email-box {
     background: var(--sage); 
-    border: 1px solid rgba(17, 28, 46, 0.1); 
+    border: 1px solid rgba(10, 34, 46, 0.1); 
     border-radius: 14px;
     padding: 24px; 
     margin: 24px 0; 

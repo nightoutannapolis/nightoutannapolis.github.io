@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Date Night Hop — NightOut Annapolis</title>
+    <title>Live Experience Timeline — NightOut Annapolis</title>
     
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="/styles.css">
@@ -16,16 +16,16 @@
 
     <main style="max-width: 640px;">
         <div id="loginCard" class="card" style="display: none; text-align: center;">
-            <h2>Date Portal Access 🔍</h2>
-            <p class="subtitle">Enter your Passcode to unlock your interactive date timeline:</p>
+            <h2>Portal Access 🔍</h2>
+            <p class="subtitle">Enter your Passcode to unlock your interactive timeline:</p>
             <input type="text" id="codeInput" placeholder="e.g. 0826-491">
-            <button class="btn" style="width: 100%;" onclick="fetchItinerary()">Access Date Timeline →</button>
+            <button class="btn" style="width: 100%;" onclick="fetchItinerary()">Access Timeline →</button>
         </div>
 
         <div id="timelineCard" class="card" style="display: none;">
             <div class="portal-header">
                 <h3 id="displayNames" style="font-size: 18px; color: var(--primary); font-weight: 900; margin-bottom: 2px;">—</h3>
-                <div id="displayDate" style="font-size: 13px; color: var(--text-muted); font-weight: 700;">Scheduled Date: —</div>
+                <div id="displayDate" style="font-size: 13px; color: var(--text-muted); font-weight: 700;">Scheduled Slot: —</div>
             </div>
 
             <h3 style="font-size: 16px; font-weight: 800; color: var(--primary); margin-bottom: 16px;">🗺️ Your Annapolis Experience Timeline</h3>
@@ -41,7 +41,7 @@
     <script>
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzK5qTseJuvbgz7uOT056mxcE2o-JESYaNkLnEhcASWbCfFkzxJ-SFBcqgxnPk8jW7-/exec";
         let activeItinerary = [];
-        let scheduledDateObj = null;
+        let rawDateString = "";
         let timerInterval = null;
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -68,10 +68,10 @@
                     document.getElementById('timelineCard').style.display = 'block';
 
                     document.getElementById('displayNames').textContent = data.names;
-                    document.getElementById('displayDate').textContent = "Scheduled Date: " + data.date;
+                    document.getElementById('displayDate').textContent = "Scheduled Slot: " + data.date;
 
                     activeItinerary = data.itinerary || [];
-                    scheduledDateObj = parseDateString(data.date);
+                    rawDateString = data.date || "";
 
                     renderTimeline();
                 } else {
@@ -85,28 +85,55 @@
             });
         }
 
-        function parseDateString(dateStr) {
-            if (!dateStr) return new Date();
-            let parsed = new Date(dateStr);
-            return isNaN(parsed.getTime()) ? new Date() : parsed;
-        }
+        // Advanced Date Parser that handles "Saturday, August 22 (6:30 AM - 10:00 AM)"
+        function buildFullTargetDateTime(rawSlotStr, timeStr) {
+            let target = new Date(); // Default fallback
+            
+            try {
+                // 1. Clean out parens like "(6:30 AM - 10:00 AM)"
+                let cleanedSlot = rawSlotStr.replace(/\(.*?\)/g, '').trim(); 
+                
+                // 2. Extract Month & Day using Regex
+                const monthNames = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+                let monthIdx = -1;
+                let dayNum = null;
 
-        function parseStepTargetTime(timeStr, baseDate) {
-            let target = new Date(baseDate);
-            if (!timeStr) return target;
+                monthNames.forEach((m, idx) => {
+                    if (cleanedSlot.toLowerCase().includes(m)) monthIdx = idx;
+                });
 
-            let isPM = timeStr.toUpperCase().includes("PM");
-            let isAM = timeStr.toUpperCase().includes("AM");
-            let clean = timeStr.replace(/AM|PM/gi, '').trim();
-            let parts = clean.split(":");
+                let dayMatch = cleanedSlot.match(/\b\d{1,2}\b/);
+                if (dayMatch) dayNum = parseInt(dayMatch[0], 10);
 
-            let hrs = parseInt(parts[0], 10) || 0;
-            let mins = parseInt(parts[1], 10) || 0;
+                if (monthIdx !== -1 && dayNum) {
+                    let currentYear = new Date().getFullYear();
+                    target = new Date(currentYear, monthIdx, dayNum);
+                    
+                    // If the date selected has already passed earlier this year, assume next year
+                    if (target < new Date(currentYear, 0, 1)) {
+                        target.setFullYear(currentYear + 1);
+                    }
+                }
 
-            if (isPM && hrs < 12) hrs += 12;
-            if (isAM && hrs === 12) hrs = 0;
+                // 3. Extract exact hour & minute from stop time string (e.g. "17:00", "5:30 PM", or "6:30")
+                if (timeStr) {
+                    let isPM = timeStr.toUpperCase().includes("PM");
+                    let isAM = timeStr.toUpperCase().includes("AM");
+                    let cleanTime = timeStr.replace(/AM|PM/gi, '').trim();
+                    let parts = cleanTime.split(":");
 
-            target.setHours(hrs, mins, 0, 0);
+                    let hrs = parseInt(parts[0], 10) || 0;
+                    let mins = parseInt(parts[1], 10) || 0;
+
+                    if (isPM && hrs < 12) hrs += 12;
+                    if (isAM && hrs === 12) hrs = 0;
+
+                    target.setHours(hrs, mins, 0, 0);
+                }
+            } catch(e) {
+                console.error("Date parsing error:", e);
+            }
+
             return target;
         }
 
@@ -116,18 +143,18 @@
             if (timerInterval) clearInterval(timerInterval);
 
             if (activeItinerary.length === 0) {
-                container.innerHTML = "<div style='color: var(--text-muted); font-size: 13px;'>Your itinerary stops are currently being assembled by our concierge team. Check back closer to date night!</div>";
+                container.innerHTML = "<div style='color: var(--text-muted); font-size: 13px;'>Your itinerary stops are currently being assembled by our concierge team. Check back closer to your event!</div>";
                 return;
             }
 
             const now = new Date();
 
             activeItinerary.forEach((step, idx) => {
-                const targetTime = parseStepTargetTime(step.time, scheduledDateObj);
+                const targetTime = buildFullTargetDateTime(rawDateString, step.time);
                 const isTimeReached = now >= targetTime;
 
                 const stepDiv = document.createElement('div');
-                stepDiv.className = `timeline-step ${isTimeReached ? 'unlocked' : (idx === 0 || now < targetTime ? 'active' : 'locked')}`;
+                stepDiv.className = `timeline-step ${isTimeReached ? 'unlocked' : 'locked'}`;
 
                 if (isTimeReached) {
                     stepDiv.innerHTML = `
@@ -151,7 +178,7 @@
                                 <div class="countdown-digits" id="timer-${idx}">00d 00h 00m 00s</div>
                             </div>
 
-                            <div style="font-size: 11px; color: var(--text-muted);">Destination & reservation details unlock automatically when scheduled.</div>
+                            <div style="font-size: 11px; color: var(--text-muted);">Destination & details unlock automatically at your scheduled time.</div>
                             <button style="background: transparent; border: 1px solid var(--border-color); padding: 6px 12px; font-size: 11px; font-weight: 700; border-radius: 6px; cursor: pointer; margin-top: 10px; color: var(--primary);" onclick="forceUnlock(${idx})">⚡ Force Unlock Early</button>
                         </div>
                     `;
@@ -184,7 +211,7 @@
                 activeItinerary.forEach((step, idx) => {
                     const timerElem = document.getElementById(`timer-${idx}`);
                     if (timerElem) {
-                        const targetTime = parseStepTargetTime(step.time, scheduledDateObj);
+                        const targetTime = buildFullTargetDateTime(rawDateString, step.time);
                         const diffMs = targetTime - now;
 
                         if (diffMs <= 0) {

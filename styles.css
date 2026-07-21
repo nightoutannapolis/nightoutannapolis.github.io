@@ -38,10 +38,11 @@ header {
     position: sticky; 
     top: 0; 
     z-index: 100;
-    padding: 16px 28px; 
+    padding: 16px 36px; 
     display: flex; 
     justify-content: space-between; 
     align-items: center;
+    width: 100%;
 }
 .logo { 
     font-size: 22px; 
@@ -74,15 +75,20 @@ header {
     border-color: var(--accent); 
 }
 
-/* HERO BANNER */
+/* FULL SCREEN HERO BANNER */
 .hero {
     position: relative;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     background: linear-gradient(rgba(17, 28, 46, 0.88), rgba(17, 28, 46, 0.88)), 
                 url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
     color: #ffffff; 
     text-align: center; 
-    padding: 90px 20px 80px 20px; 
-    margin-bottom: 40px;
+    padding: 100px 20px 90px 20px; 
+    margin-bottom: 50px;
 }
 .hero-badge {
     display: inline-block; 
@@ -99,17 +105,17 @@ header {
     letter-spacing: 1px;
 }
 .hero h1 { 
-    font-size: 44px; 
+    font-size: 48px; 
     font-weight: 900; 
     line-height: 1.15; 
     letter-spacing: -1px; 
     margin-bottom: 16px; 
 }
 .hero p { 
-    font-size: 17px; 
+    font-size: 18px; 
     color: #cbd5e1; 
-    max-width: 620px; 
-    margin: 0 auto 32px auto; 
+    max-width: 650px; 
+    margin: 0 auto 36px auto; 
     font-weight: 400; 
 }
 
@@ -142,21 +148,21 @@ header {
     color: var(--primary); 
 }
 
-/* SECTIONS & CONTAINERS */
-section { 
-    max-width: 860px; 
-    margin: 40px auto; 
-    padding: 0 20px; 
-}
+/* WIDE SECTIONS & MAIN CONTAINERS */
 main { 
     flex: 1; 
-    max-width: 680px; 
     width: 100%; 
-    margin: 36px auto; 
-    padding: 0 20px; 
+    max-width: 1140px; 
+    margin: 0 auto; 
+    padding: 0 20px 60px 20px; 
+}
+section { 
+    width: 100%;
+    max-width: 1140px; 
+    margin: 50px auto; 
 }
 .section-title { 
-    font-size: 26px; 
+    font-size: 28px; 
     font-weight: 900; 
     text-align: center; 
     margin-bottom: 8px; 
@@ -164,13 +170,13 @@ main {
     letter-spacing: -0.5px; 
 }
 .section-subtitle { 
-    font-size: 14px; 
+    font-size: 15px; 
     color: var(--text-muted); 
     text-align: center; 
-    margin-bottom: 36px; 
+    margin-bottom: 38px; 
 }
 
-/* CARDS & GRIDS */
+/* CARDS & STRICT 3-ACROSS GRID */
 .card {
     background-color: var(--card-bg); 
     border: 1px solid var(--border-color);
@@ -180,9 +186,16 @@ main {
 }
 .grid-3 { 
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 24px; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 28px; 
 }
+
+@media (max-width: 850px) {
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
 .card-with-img {
     background: #ffffff; 
     border: 1px solid var(--border-color); 
@@ -193,7 +206,7 @@ main {
 }
 .card-img { 
     width: 100%; 
-    height: 160px; 
+    height: 180px; 
     object-fit: cover; 
 }
 .card-body { 
@@ -246,7 +259,7 @@ main {
     background: #ffffff; 
     border: 1px solid var(--border-color); 
     border-radius: 18px; 
-    padding: 8px 24px; 
+    padding: 8px 28px; 
 }
 .faq-item { 
     border-bottom: 1px solid var(--border-color); 
@@ -255,7 +268,7 @@ main {
     border-bottom: none; 
 }
 .faq-question {
-    padding: 18px 0; 
+    padding: 20px 0; 
     font-size: 15px; 
     font-weight: 800; 
     color: var(--primary);
@@ -275,7 +288,7 @@ main {
 }
 .faq-item.active .faq-answer { 
     max-height: 200px; 
-    padding-bottom: 18px; 
+    padding-bottom: 20px; 
 }
 .faq-icon { 
     font-size: 18px; 
@@ -329,7 +342,7 @@ main {
     border-radius: 20px;
     padding: 40px 32px; 
     box-shadow: 0 10px 30px rgba(17, 28, 46, 0.05); 
-    max-width: 560px; 
+    max-width: 580px; 
     margin: 0 auto; 
     text-align: center;
 }
@@ -569,6 +582,7 @@ footer {
     border-top: 1px solid var(--border-color); 
     margin-top: 60px; 
     background: #ffffff;
+    width: 100%;
 }
 footer a { 
     color: var(--primary); 

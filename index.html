@@ -8,24 +8,34 @@
     <!-- FAVICON LINK -->
     <link rel="icon" type="image/png" href="/favicon.png">
 
+    <!-- Social Media Preview Cards (OpenGraph) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nightoutannapolis.github.io/">
+    <meta property="og:title" content="NightOut Annapolis — Secret Date Night Experiences">
+    <meta property="og:description" content="Fully curated, surprise date nights in Downtown Annapolis. Fine dining, craft drinks, and waterfront stops.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80">
+
     <style>
         :root {
             --bg-color: #f6f8fb;
             --card-bg: #ffffff;
-            --primary: #111c2e; /* Exact Midnight Navy from Favicon */
-            --accent: #d8a236;  /* Exact Crescent Gold from Favicon */
-            --accent-hover: #eec35e;
+            --primary: #111c2e;     /* Favicon Navy */
+            --accent: #d8a236;      /* Favicon Moon Gold */
+            --coral: #e63956;       /* Palette Coral Rose */
+            --sage: #d1e9d2;        /* Palette Sage Mint */
+            --slate: #43505c;       /* Palette Slate Gray */
             --text-main: #111c2e;
-            --text-muted: #64748b;
+            --text-muted: #43505c;
             --border-color: #e2e8f0;
         }
 
+        html { scroll-behavior: smooth; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
         body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
 
         header {
-            background: var(--primary); border-bottom: 1px solid rgba(216, 162, 54, 0.2);
+            background: var(--primary); border-bottom: 2px solid var(--accent);
             position: sticky; top: 0; z-index: 100;
             padding: 16px 28px; display: flex; justify-content: space-between; align-items: center;
         }
@@ -45,9 +55,9 @@
             color: #ffffff; text-align: center; padding: 90px 20px 80px 20px; margin-bottom: 40px;
         }
         .hero-badge {
-            display: inline-block; background: rgba(216, 162, 54, 0.18); color: var(--accent);
-            font-size: 12px; font-weight: 700; padding: 6px 18px; border-radius: 50px;
-            backdrop-filter: blur(4px); margin-bottom: 18px; border: 1px solid rgba(216, 162, 54, 0.4); text-transform: uppercase; letter-spacing: 1px;
+            display: inline-block; background: rgba(216, 162, 54, 0.2); color: var(--accent);
+            font-size: 12px; font-weight: 800; padding: 6px 18px; border-radius: 50px;
+            backdrop-filter: blur(4px); margin-bottom: 18px; border: 1px solid var(--accent); text-transform: uppercase; letter-spacing: 1px;
         }
         .hero h1 { font-size: 44px; font-weight: 900; line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; }
         .hero p { font-size: 17px; color: #cbd5e1; max-width: 620px; margin: 0 auto 32px auto; font-weight: 400; }
@@ -56,8 +66,9 @@
             background-color: var(--accent); color: var(--primary); border: none; padding: 14px 32px;
             font-size: 15px; font-weight: 800; border-radius: 10px; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s;
         }
-        .btn:hover { background-color: var(--accent-hover); transform: translateY(-1px); }
+        .btn:hover { background-color: var(--coral); color: #ffffff; transform: translateY(-1px); }
         .btn-secondary { background: #ffffff; color: var(--primary); }
+        .btn-secondary:hover { background: var(--sage); color: var(--primary); }
 
         section { max-width: 860px; margin: 40px auto; padding: 0 20px; }
         .section-title { font-size: 26px; font-weight: 900; text-align: center; margin-bottom: 8px; color: var(--primary); letter-spacing: -0.5px; }
@@ -73,16 +84,14 @@
         .card-body h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; color: var(--primary); }
         .card-body p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5; }
 
-        /* REVIEWS / TESTIMONIALS */
         .review-card {
-            background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; padding: 24px;
-            box-shadow: 0 4px 16px rgba(17, 28, 46, 0.03); position: relative;
+            background: #ffffff; border: 1px solid var(--border-color); border-top: 4px solid var(--accent);
+            border-radius: 18px; padding: 24px; box-shadow: 0 4px 16px rgba(17, 28, 46, 0.03);
         }
-        .stars { color: var(--accent); font-size: 16px; margin-bottom: 10px; }
+        .stars { color: var(--coral); font-size: 16px; margin-bottom: 10px; }
         .review-text { font-size: 13.5px; color: #334155; font-style: italic; margin-bottom: 14px; line-height: 1.6; }
         .review-author { font-size: 12px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* FAQ ACCORDION */
         .faq-container { background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; padding: 8px 24px; }
         .faq-item { border-bottom: 1px solid var(--border-color); }
         .faq-item:last-child { border-bottom: none; }
@@ -95,13 +104,13 @@
             font-size: 13.5px; color: var(--text-muted); line-height: 1.6;
         }
         .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 18px; }
-        .faq-icon { font-size: 18px; color: var(--accent); transition: transform 0.3s ease; }
+        .faq-icon { font-size: 18px; color: var(--coral); transition: transform 0.3s ease; }
         .faq-item.active .faq-icon { transform: rotate(45deg); }
 
         .sample-box { background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; padding: 32px; box-shadow: 0 4px 16px rgba(17, 28, 46, 0.03); }
         .sample-step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px dashed var(--border-color); }
         .sample-step:last-child { border-bottom: none; }
-        .sample-time { font-weight: 800; font-size: 13px; color: var(--accent); width: 75px; flex-shrink: 0; }
+        .sample-time { font-weight: 800; font-size: 13px; color: var(--coral); width: 75px; flex-shrink: 0; }
         .sample-desc h4 { font-size: 15px; font-weight: 800; margin-bottom: 2px; color: var(--primary); }
         .sample-desc p { font-size: 13px; color: var(--text-muted); margin: 0; }
 
@@ -129,7 +138,6 @@
     </header>
 
     <main>
-        <!-- HERO BANNER -->
         <div class="hero">
             <span class="hero-badge">Downtown Annapolis • Historic District & Waterway</span>
             <h1>Ditch the Planning.<br>Keep the Romance.</h1>
@@ -140,7 +148,6 @@
             </div>
         </div>
 
-        <!-- HOW IT WORKS -->
         <section id="howItWorks">
             <h2 class="section-title">The Annapolis Experience</h2>
             <p class="section-subtitle">Three easy steps to an effortless, memorable night out in America's Sailing Capital.</p>
@@ -170,7 +177,6 @@
             </div>
         </section>
 
-        <!-- SAMPLE ITINERARY PREVIEW -->
         <section>
             <h2 class="section-title">Sample Itinerary Preview</h2>
             <p class="section-subtitle">Here is what a typical curated Annapolis evening looks like in action.</p>
@@ -200,7 +206,6 @@
             </div>
         </section>
 
-        <!-- CUSTOMER REVIEWS / TESTIMONIALS -->
         <section>
             <h2 class="section-title">Loved by Annapolis Couples</h2>
             <p class="section-subtitle">Here is what couples are saying about their surprise date night experience.</p>
@@ -224,7 +229,6 @@
             </div>
         </section>
 
-        <!-- FREQUENTLY ASKED QUESTIONS -->
         <section>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Everything you need to know before booking your mystery date night.</p>
@@ -249,7 +253,6 @@
             </div>
         </section>
 
-        <!-- BOOKING CTA -->
         <section id="bookingSection">
             <div id="bookingCard" class="form-modal-card">
                 <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--primary);">Ready for Date Night?</h3>
@@ -267,11 +270,9 @@
     </footer>
 
     <script>
-        // FAQ Accordion Interactivity
         document.querySelectorAll('.faq-question').forEach(q => {
             q.addEventListener('click', () => {
-                const item = q.parentElement;
-                item.classList.toggle('active');
+                q.parentElement.classList.toggle('active');
             });
         });
     </script>

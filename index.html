@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NightOut Annapolis — Fully Curated Surprises for Couples</title>
+    <style>
+        :root {
+            --bg-color: #fbfbf9;
+            --card-bg: #ffffff;
+            --primary: #0b172a;
+            --accent: #d4af37;
+            --text-main: #0b172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+
+        header {
+            background: #0b172a; border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky; top: 0; z-index: 100;
+            padding: 16px 28px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 22px; font-weight: 900; color: #ffffff; text-decoration: none; letter-spacing: -0.5px; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 12px; align-items: center; }
+        .nav-btn {
+            background: rgba(255,255,255,0.08); color: #ffffff; border: 1px solid rgba(255,255,255,0.15);
+            padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.2s;
+        }
+        .nav-btn:hover { background: rgba(255,255,255,0.18); }
+
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(11, 23, 42, 0.82), rgba(11, 23, 42, 0.82)), 
+                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            color: #ffffff; text-align: center; padding: 90px 20px 80px 20px; margin-bottom: 40px;
+        }
+        .hero-badge {
+            display: inline-block; background: rgba(212, 175, 55, 0.2); color: #fdf6d8;
+            font-size: 12px; font-weight: 700; padding: 6px 18px; border-radius: 50px;
+            backdrop-filter: blur(4px); margin-bottom: 18px; border: 1px solid rgba(212, 175, 55, 0.4); text-transform: uppercase; letter-spacing: 1px;
+        }
+        .hero h1 { font-size: 44px; font-weight: 900; line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; }
+        .hero p { font-size: 17px; color: #cbd5e1; max-width: 620px; margin: 0 auto 32px auto; font-weight: 400; }
+
+        .btn {
+            background-color: var(--accent); color: #0b172a; border: none; padding: 14px 32px;
+            font-size: 15px; font-weight: 800; border-radius: 10px; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s;
+        }
+        .btn:hover { background-color: #c49f2c; transform: translateY(-1px); }
+        .btn-secondary { background: #ffffff; color: var(--primary); }
+
+        section { max-width: 860px; margin: 40px auto; padding: 0 20px; }
+        .section-title { font-size: 26px; font-weight: 900; text-align: center; margin-bottom: 8px; color: var(--primary); letter-spacing: -0.5px; }
+        .section-subtitle { font-size: 14px; color: var(--text-muted); text-align: center; margin-bottom: 36px; }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+        .card-with-img {
+            background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; overflow: hidden;
+            box-shadow: 0 4px 16px rgba(11, 23, 42, 0.03); text-align: left;
+        }
+        .card-img { width: 100%; height: 160px; object-fit: cover; }
+        .card-body { padding: 22px; }
+        .card-body h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; color: var(--primary); }
+        .card-body p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+        .sample-box { background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; padding: 32px; box-shadow: 0 4px 16px rgba(11, 23, 42, 0.03); }
+        .sample-step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px dashed var(--border-color); }
+        .sample-step:last-child { border-bottom: none; }
+        .sample-time { font-weight: 800; font-size: 13px; color: var(--accent); width: 75px; flex-shrink: 0; }
+        .sample-desc h4 { font-size: 15px; font-weight: 800; margin-bottom: 2px; color: var(--primary); }
+        .sample-desc p { font-size: 13px; color: var(--text-muted); margin: 0; }
+
+        .form-modal-card {
+            background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px;
+            padding: 40px 32px; box-shadow: 0 10px 30px rgba(11, 23, 42, 0.05); max-width: 560px; margin: 0 auto; text-align: center;
+        }
+        .form-group { margin-bottom: 18px; text-align: left; }
+        label { display: block; margin-bottom: 6px; font-weight: 700; font-size: 12px; color: var(--primary); text-transform: uppercase; }
+        input[type="text"], input[type="tel"], input[type="email"], select {
+            width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border-color);
+            background-color: #ffffff; color: var(--text-main); font-size: 14px; outline: none;
+        }
+
+        .hidden { display: none !important; }
+        footer {
+            text-align: center; padding: 36px 20px; font-size: 12px; color: var(--text-muted);
+            border-top: 1px solid var(--border-color); margin-top: 60px; background: #ffffff;
+        }
+        footer a { color: var(--primary); text-decoration: none; font-weight: 700; margin: 0 8px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">NightOut<span>Annapolis</span></a>
+        <div class="nav-links">
+            <a href="about.html" class="nav-btn">About Us</a>
+            <a href="contact.html" class="nav-btn">Contact</a>
+            <a href="tracker.html" class="nav-btn" style="background: var(--accent); color: #0b172a;">🔍 Track Pass</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <span class="hero-badge">Downtown Annapolis • Historic District & Waterway</span>
+            <h1>Ditch the Planning.<br>Keep the Romance.</h1>
+            <p>We craft confidential, surprise date night itineraries—combining gourmet dining, craft cocktails, and secret dessert spots.</p>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="booking.html" class="btn">View Available Times ($49.99) →</a>
+                <a href="tracker.html" class="btn btn-secondary">Access Live Portal</a>
+            </div>
+        </div>
+
+        <section id="howItWorks">
+            <h2 class="section-title">The Annapolis Experience</h2>
+            <p class="section-subtitle">Three easy steps to an effortless, memorable night out in America's Sailing Capital.</p>
+            
+            <div class="grid-3">
+                <div class="card-with-img">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Gourmet Food & Steak">
+                    <div class="card-body">
+                        <h3>1. Fine Food & Dining</h3>
+                        <p>Enjoy curated menus, fresh local seafood, and chef pairing tables at top Annapolis venues.</p>
+                    </div>
+                </div>
+                <div class="card-with-img">
+                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Craft Drinks & Cocktails">
+                    <div class="card-body">
+                        <h3>2. Drinks & Cocktails</h3>
+                        <p>Pre-booked tasting flights, subterranean speakeasies, and cozy waterfront wine bars.</p>
+                    </div>
+                </div>
+                <div class="card-with-img">
+                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Couples Night Out Fun">
+                    <div class="card-body">
+                        <h3>3. Romance & Memories</h3>
+                        <p>Follow your passcode countdown on date night. Each stop unlocks right as your evening unfolds!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Sample Itinerary Preview</h2>
+            <p class="section-subtitle">Here is what a typical curated Annapolis evening looks like in action.</p>
+
+            <div class="sample-box">
+                <div class="sample-step">
+                    <div class="sample-time">5:30 PM</div>
+                    <div class="sample-desc">
+                        <h4>Stop 1: Speakeasy Craft Flight</h4>
+                        <p>Pre-booked cocktail flight or wine pairing at a hidden lounge in downtown Annapolis.</p>
+                    </div>
+                </div>
+                <div class="sample-step">
+                    <div class="sample-time">7:00 PM</div>
+                    <div class="sample-desc">
+                        <h4>Stop 2: Curated Main Dinner</h4>
+                        <p>Reserved dining experience near Ego Alley with priority chef pairings.</p>
+                    </div>
+                </div>
+                <div class="sample-step">
+                    <div class="sample-time">8:45 PM</div>
+                    <div class="sample-desc">
+                        <h4>Stop 3: Secret Dessert Stop</h4>
+                        <p>Voucher for artisanal gelato or late-night dessert by the harbor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bookingSection">
+            <div id="bookingCard" class="form-modal-card">
+                <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--primary);">Ready for Date Night?</h3>
+                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">Explore upcoming Friday and Saturday dates, view available start times, and secure your package.</p>
+                <a href="booking.html" class="btn" style="width: 100%; display: block;">View Available Dates & Start Times →</a>
+            </div>
+
+            <div id="preferencesCard" class="form-modal-card hidden">
+                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 8px; color: var(--primary);">Payment Confirmed! 🎉</h3>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Tell us your preferences to receive your passcode:</p>
+                
+                <form id="preferencesForm">
+                    <div class="form-group">
+                        <label for="names">1) First & Last Names (Both Guests):</label>
+                        <input type="text" id="names" placeholder="e.g. John Smith & Jane Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">2) Cell Phone Number:</label>
+                        <input type="tel" id="phone" placeholder="e.g. (410) 555-0199" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">3) Email Address:</label>
+                        <input type="email" id="email" placeholder="e.g. john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="diet">4) Dietary Restrictions / Food Allergies:</label>
+                        <input type="text" id="diet" placeholder="e.g. None, Vegetarian, Shellfish Allergy" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vibe">5) Preferred Date Atmosphere:</label>
+                        <select id="vibe" required>
+                            <option value="" disabled selected>Select a vibe...</option>
+                            <option value="Waterfront & Seafood">Waterfront & Fresh Seafood</option>
+                            <option value="Cozy & Intimate Wine Bar">Cozy & Intimate Wine Bar</option>
+                            <option value="Hidden Underground Gastropub">Hidden Underground Gastropub</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="priceTier">6) Target Dinner Spending Range:</label>
+                        <select id="priceTier" required>
+                            <option value="" disabled selected>Select target price...</option>
+                            <option value="$ ($15-25 per person)">$ — Budget Friendly</option>
+                            <option value="$$ ($25-40 per person)">$$ — Moderate / Standard</option>
+                            <option value="$$$ ($40-65 per person)">$$$ — Upscale Dining</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%;">Lock In Preferences & Get Pass 🔐</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 NightOut Annapolis. Made by locals, supporting local businesses.
+        <div style="margin-top: 8px;">
+            <a href="about.html">About Us</a> • <a href="contact.html">Contact Us</a>
+        </div>
+    </footer>
+
+    <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzK5qTseJuvbgz7uOT056mxcE2o-JESYaNkLnEhcASWbCfFkzxJ-SFBcqgxnPk8jW7-/exec";
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (window.location.hash === '#success' || urlParams.get('success') === 'true') {
+                document.getElementById('bookingCard').classList.add('hidden');
+                document.getElementById('preferencesCard').classList.remove('hidden');
+                document.getElementById('bookingSection').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        document.getElementById('preferencesForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const submitBtn = e.target.querySelector('button');
+            submitBtn.textContent = "Saving & Emailing Pass...";
+            submitBtn.disabled = true;
+
+            const payload = {
+                date: localStorage.getItem('chosenDate') || "Saturday, August 8",
+                names: document.getElementById('names').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                diet: document.getElementById('diet').value,
+                vibe: document.getElementById('vibe').value,
+                priceTier: document.getElementById('priceTier').value
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST", mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                alert('Preferences locked in! Check your email for your date passcode.');
+                window.location.href = "tracker.html";
+            });
+        });
+    </script>
+</body>
+</html>

@@ -5,126 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NightOut Annapolis — Fully Curated Surprises for Couples</title>
     
-    <!-- FAVICON LINK -->
     <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="/styles.css">
 
-    <!-- Social Media Preview Cards (OpenGraph) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nightoutannapolis.github.io/">
     <meta property="og:title" content="NightOut Annapolis — Secret Date Night Experiences">
     <meta property="og:description" content="Fully curated, surprise date nights in Downtown Annapolis. Fine dining, craft drinks, and waterfront stops.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80">
-
-    <style>
-        :root {
-            --bg-color: #f6f8fb;
-            --card-bg: #ffffff;
-            --primary: #111c2e;     /* Favicon Navy */
-            --accent: #d8a236;      /* Favicon Moon Gold */
-            --coral: #e63956;       /* Palette Coral Rose */
-            --sage: #d1e9d2;        /* Palette Sage Mint */
-            --slate: #43505c;       /* Palette Slate Gray */
-            --text-main: #111c2e;
-            --text-muted: #43505c;
-            --border-color: #e2e8f0;
-        }
-
-        html { scroll-behavior: smooth; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
-
-        header {
-            background: var(--primary); border-bottom: 2px solid var(--accent);
-            position: sticky; top: 0; z-index: 100;
-            padding: 16px 28px; display: flex; justify-content: space-between; align-items: center;
-        }
-        .logo { font-size: 22px; font-weight: 900; color: #ffffff; text-decoration: none; letter-spacing: -0.5px; }
-        .logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 12px; align-items: center; }
-        .nav-btn {
-            background: rgba(255,255,255,0.08); color: #ffffff; border: 1px solid rgba(255,255,255,0.15);
-            padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.2s;
-        }
-        .nav-btn:hover { background: rgba(255,255,255,0.18); border-color: var(--accent); }
-
-        .hero {
-            position: relative;
-            background: linear-gradient(rgba(17, 28, 46, 0.88), rgba(17, 28, 46, 0.88)), 
-                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-            color: #ffffff; text-align: center; padding: 90px 20px 80px 20px; margin-bottom: 40px;
-        }
-        .hero-badge {
-            display: inline-block; background: rgba(216, 162, 54, 0.2); color: var(--accent);
-            font-size: 12px; font-weight: 800; padding: 6px 18px; border-radius: 50px;
-            backdrop-filter: blur(4px); margin-bottom: 18px; border: 1px solid var(--accent); text-transform: uppercase; letter-spacing: 1px;
-        }
-        .hero h1 { font-size: 44px; font-weight: 900; line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; }
-        .hero p { font-size: 17px; color: #cbd5e1; max-width: 620px; margin: 0 auto 32px auto; font-weight: 400; }
-
-        .btn {
-            background-color: var(--accent); color: var(--primary); border: none; padding: 14px 32px;
-            font-size: 15px; font-weight: 800; border-radius: 10px; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s;
-        }
-        .btn:hover { background-color: var(--coral); color: #ffffff; transform: translateY(-1px); }
-        .btn-secondary { background: #ffffff; color: var(--primary); }
-        .btn-secondary:hover { background: var(--sage); color: var(--primary); }
-
-        section { max-width: 860px; margin: 40px auto; padding: 0 20px; }
-        .section-title { font-size: 26px; font-weight: 900; text-align: center; margin-bottom: 8px; color: var(--primary); letter-spacing: -0.5px; }
-        .section-subtitle { font-size: 14px; color: var(--text-muted); text-align: center; margin-bottom: 36px; }
-
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
-        .card-with-img {
-            background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; overflow: hidden;
-            box-shadow: 0 4px 16px rgba(17, 28, 46, 0.04); text-align: left;
-        }
-        .card-img { width: 100%; height: 160px; object-fit: cover; }
-        .card-body { padding: 22px; }
-        .card-body h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; color: var(--primary); }
-        .card-body p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5; }
-
-        .review-card {
-            background: #ffffff; border: 1px solid var(--border-color); border-top: 4px solid var(--accent);
-            border-radius: 18px; padding: 24px; box-shadow: 0 4px 16px rgba(17, 28, 46, 0.03);
-        }
-        .stars { color: var(--coral); font-size: 16px; margin-bottom: 10px; }
-        .review-text { font-size: 13.5px; color: #334155; font-style: italic; margin-bottom: 14px; line-height: 1.6; }
-        .review-author { font-size: 12px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; }
-
-        .faq-container { background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; padding: 8px 24px; }
-        .faq-item { border-bottom: 1px solid var(--border-color); }
-        .faq-item:last-child { border-bottom: none; }
-        .faq-question {
-            padding: 18px 0; font-size: 15px; font-weight: 800; color: var(--primary);
-            cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;
-        }
-        .faq-answer {
-            max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;
-            font-size: 13.5px; color: var(--text-muted); line-height: 1.6;
-        }
-        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 18px; }
-        .faq-icon { font-size: 18px; color: var(--coral); transition: transform 0.3s ease; }
-        .faq-item.active .faq-icon { transform: rotate(45deg); }
-
-        .sample-box { background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; padding: 32px; box-shadow: 0 4px 16px rgba(17, 28, 46, 0.03); }
-        .sample-step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px dashed var(--border-color); }
-        .sample-step:last-child { border-bottom: none; }
-        .sample-time { font-weight: 800; font-size: 13px; color: var(--coral); width: 75px; flex-shrink: 0; }
-        .sample-desc h4 { font-size: 15px; font-weight: 800; margin-bottom: 2px; color: var(--primary); }
-        .sample-desc p { font-size: 13px; color: var(--text-muted); margin: 0; }
-
-        .form-modal-card {
-            background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px;
-            padding: 40px 32px; box-shadow: 0 10px 30px rgba(17, 28, 46, 0.05); max-width: 560px; margin: 0 auto; text-align: center;
-        }
-
-        footer {
-            text-align: center; padding: 36px 20px; font-size: 12px; color: var(--text-muted);
-            border-top: 1px solid var(--border-color); margin-top: 60px; background: #ffffff;
-        }
-        footer a { color: var(--primary); text-decoration: none; font-weight: 700; margin: 0 8px; }
-    </style>
 </head>
 <body>
 
@@ -143,7 +31,7 @@
             <h1>Ditch the Planning.<br>Keep the Romance.</h1>
             <p>We craft confidential, surprise date night itineraries—combining gourmet dining, craft cocktails, and secret dessert spots.</p>
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <a href="/booking/" class="btn">View Available Times ($49.99) →</a>
+                <a href="/booking/" class="btn">View Available Times →</a>
                 <a href="/tracker/" class="btn btn-secondary">Access Live Portal</a>
             </div>
         </div>
@@ -235,8 +123,8 @@
 
             <div class="faq-container">
                 <div class="faq-item">
-                    <div class="faq-question">What does the $49.99 package fee cover? <span class="faq-icon">+</span></div>
-                    <div class="faq-answer">The $49.99 fee covers our full concierge planning service, priority table reservations, and secret digital portal access. Food and beverage costs are paid directly to the local venues during your date night.</div>
+                    <div class="faq-question">What does the concierge package fee cover? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">The package fee covers our full concierge planning service, priority table reservations, and secret digital portal access. Food and beverage costs are paid directly to the local venues during your date night.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">What if we have dietary restrictions or food allergies? <span class="faq-icon">+</span></div>

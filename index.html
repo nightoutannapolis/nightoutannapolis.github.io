@@ -97,11 +97,11 @@
 <body>
 
     <header>
-        <a href="index.html" class="logo">NightOut<span>Annapolis</span></a>
+        <a href="/" class="logo">NightOut<span>Annapolis</span></a>
         <div class="nav-links">
-            <a href="about.html" class="nav-btn">About Us</a>
-            <a href="contact.html" class="nav-btn">Contact</a>
-            <a href="tracker.html" class="nav-btn" style="background: var(--accent); color: #0b172a;">🔍 Track Pass</a>
+            <a href="/about/" class="nav-btn">About Us</a>
+            <a href="/contact/" class="nav-btn">Contact</a>
+            <a href="/tracker/" class="nav-btn" style="background: var(--accent); color: #0b172a;">🔍 Track Pass</a>
         </div>
     </header>
 
@@ -111,8 +111,8 @@
             <h1>Ditch the Planning.<br>Keep the Romance.</h1>
             <p>We craft confidential, surprise date night itineraries—combining gourmet dining, craft cocktails, and secret dessert spots.</p>
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <a href="booking.html" class="btn">View Available Times ($49.99) →</a>
-                <a href="tracker.html" class="btn btn-secondary">Access Live Portal</a>
+                <a href="/booking/" class="btn">View Available Times ($49.99) →</a>
+                <a href="/tracker/" class="btn btn-secondary">Access Live Portal</a>
             </div>
         </div>
 
@@ -122,21 +122,21 @@
             
             <div class="grid-3">
                 <div class="card-with-img">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Gourmet Food & Steak">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Gourmet Dining">
                     <div class="card-body">
                         <h3>1. Fine Food & Dining</h3>
                         <p>Enjoy curated menus, fresh local seafood, and chef pairing tables at top Annapolis venues.</p>
                     </div>
                 </div>
                 <div class="card-with-img">
-                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Craft Drinks & Cocktails">
+                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Craft Drinks">
                     <div class="card-body">
                         <h3>2. Drinks & Cocktails</h3>
                         <p>Pre-booked tasting flights, subterranean speakeasies, and cozy waterfront wine bars.</p>
                     </div>
                 </div>
                 <div class="card-with-img">
-                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Couples Night Out Fun">
+                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Romance">
                     <div class="card-body">
                         <h3>3. Romance & Memories</h3>
                         <p>Follow your passcode countdown on date night. Each stop unlocks right as your evening unfolds!</p>
@@ -178,7 +178,7 @@
             <div id="bookingCard" class="form-modal-card">
                 <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--primary);">Ready for Date Night?</h3>
                 <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">Explore upcoming Friday and Saturday dates, view available start times, and secure your package.</p>
-                <a href="booking.html" class="btn" style="width: 100%; display: block;">View Available Dates & Start Times →</a>
+                <a href="/booking/" class="btn" style="width: 100%; display: block;">View Available Dates & Start Times →</a>
             </div>
 
             <div id="preferencesCard" class="form-modal-card hidden">
@@ -230,7 +230,7 @@
     <footer>
         &copy; 2026 NightOut Annapolis. Made by locals, supporting local businesses.
         <div style="margin-top: 8px;">
-            <a href="about.html">About Us</a> • <a href="contact.html">Contact Us</a>
+            <a href="/about/">About Us</a> • <a href="/contact/">Contact Us</a>
         </div>
     </footer>
 
@@ -269,7 +269,7 @@
             })
             .then(() => {
                 alert('Preferences locked in! Check your email for your date passcode.');
-                window.location.href = "tracker.html";
+                window.location.href = "/tracker/";
             });
         });
     </script>

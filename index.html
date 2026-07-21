@@ -79,14 +79,7 @@
             background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px;
             padding: 40px 32px; box-shadow: 0 10px 30px rgba(11, 23, 42, 0.05); max-width: 560px; margin: 0 auto; text-align: center;
         }
-        .form-group { margin-bottom: 18px; text-align: left; }
-        label { display: block; margin-bottom: 6px; font-weight: 700; font-size: 12px; color: var(--primary); text-transform: uppercase; }
-        input[type="text"], input[type="tel"], input[type="email"], select {
-            width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border-color);
-            background-color: #ffffff; color: var(--text-main); font-size: 14px; outline: none;
-        }
 
-        .hidden { display: none !important; }
         footer {
             text-align: center; padding: 36px 20px; font-size: 12px; color: var(--text-muted);
             border-top: 1px solid var(--border-color); margin-top: 60px; background: #ffffff;
@@ -106,6 +99,7 @@
     </header>
 
     <main>
+        <!-- HERO BANNER -->
         <div class="hero">
             <span class="hero-badge">Downtown Annapolis • Historic District & Waterway</span>
             <h1>Ditch the Planning.<br>Keep the Romance.</h1>
@@ -116,6 +110,7 @@
             </div>
         </div>
 
+        <!-- HOW IT WORKS -->
         <section id="howItWorks">
             <h2 class="section-title">The Annapolis Experience</h2>
             <p class="section-subtitle">Three easy steps to an effortless, memorable night out in America's Sailing Capital.</p>
@@ -145,6 +140,7 @@
             </div>
         </section>
 
+        <!-- SAMPLE ITINERARY PREVIEW -->
         <section>
             <h2 class="section-title">Sample Itinerary Preview</h2>
             <p class="section-subtitle">Here is what a typical curated Annapolis evening looks like in action.</p>
@@ -174,55 +170,12 @@
             </div>
         </section>
 
+        <!-- BOOKING CTA -->
         <section id="bookingSection">
             <div id="bookingCard" class="form-modal-card">
                 <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--primary);">Ready for Date Night?</h3>
                 <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">Explore upcoming Friday and Saturday dates, view available start times, and secure your package.</p>
                 <a href="/booking/" class="btn" style="width: 100%; display: block;">View Available Dates & Start Times →</a>
-            </div>
-
-            <div id="preferencesCard" class="form-modal-card hidden">
-                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 8px; color: var(--primary);">Payment Confirmed! 🎉</h3>
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Tell us your preferences to receive your passcode:</p>
-                
-                <form id="preferencesForm">
-                    <div class="form-group">
-                        <label for="names">1) First & Last Names (Both Guests):</label>
-                        <input type="text" id="names" placeholder="e.g. John Smith & Jane Doe" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">2) Cell Phone Number:</label>
-                        <input type="tel" id="phone" placeholder="e.g. (410) 555-0199" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">3) Email Address:</label>
-                        <input type="email" id="email" placeholder="e.g. john@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="diet">4) Dietary Restrictions / Food Allergies:</label>
-                        <input type="text" id="diet" placeholder="e.g. None, Vegetarian, Shellfish Allergy" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="vibe">5) Preferred Date Atmosphere:</label>
-                        <select id="vibe" required>
-                            <option value="" disabled selected>Select a vibe...</option>
-                            <option value="Waterfront & Seafood">Waterfront & Fresh Seafood</option>
-                            <option value="Cozy & Intimate Wine Bar">Cozy & Intimate Wine Bar</option>
-                            <option value="Hidden Underground Gastropub">Hidden Underground Gastropub</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="priceTier">6) Target Dinner Spending Range:</label>
-                        <select id="priceTier" required>
-                            <option value="" disabled selected>Select target price...</option>
-                            <option value="$ ($15-25 per person)">$ — Budget Friendly</option>
-                            <option value="$$ ($25-40 per person)">$$ — Moderate / Standard</option>
-                            <option value="$$$ ($40-65 per person)">$$$ — Upscale Dining</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn" style="width: 100%;">Lock In Preferences & Get Pass 🔐</button>
-                </form>
             </div>
         </section>
     </main>
@@ -234,44 +187,5 @@
         </div>
     </footer>
 
-    <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzK5qTseJuvbgz7uOT056mxcE2o-JESYaNkLnEhcASWbCfFkzxJ-SFBcqgxnPk8jW7-/exec";
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (window.location.hash === '#success' || urlParams.get('success') === 'true') {
-                document.getElementById('bookingCard').classList.add('hidden');
-                document.getElementById('preferencesCard').classList.remove('hidden');
-                document.getElementById('bookingSection').scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-
-        document.getElementById('preferencesForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const submitBtn = e.target.querySelector('button');
-            submitBtn.textContent = "Saving & Emailing Pass...";
-            submitBtn.disabled = true;
-
-            const payload = {
-                date: localStorage.getItem('chosenDate') || "Saturday, August 8",
-                names: document.getElementById('names').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                diet: document.getElementById('diet').value,
-                vibe: document.getElementById('vibe').value,
-                priceTier: document.getElementById('priceTier').value
-            };
-
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST", mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            })
-            .then(() => {
-                alert('Preferences locked in! Check your email for your date passcode.');
-                window.location.href = "/tracker/";
-            });
-        });
-    </script>
 </body>
 </html>

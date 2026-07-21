@@ -1,14 +1,14 @@
 :root {
-    --bg-color: #f7f9fc;
+    --bg-color: #f8faf9;
     --card-bg: #ffffff;
-    --primary: #0f172a;     /* Deep Slate Indigo */
-    --accent: #f59e0b;      /* Warm Amber Gold */
-    --coral: #ec4899;       /* Electric Rose */
-    --sage: #e0f2fe;        /* Crisp Ice Blue Tint */
-    --slate: #475569;       /* Muted Slate Text */
-    --text-main: #0f172a;
-    --text-muted: #475569;
-    --border-color: #e2e8f0;
+    --primary: #064e3b;     /* Deep Forest Emerald */
+    --accent: #eab308;      /* Warm Honey Gold */
+    --coral: #f97316;       /* Warm Tangerine Accent */
+    --sage: #ecfdf5;        /* Mint Tint */
+    --slate: #374151;       /* Warm Gray Text */
+    --text-main: #064e3b;
+    --text-muted: #374151;
+    --border-color: #e5e7eb;
 }
 
 html { 

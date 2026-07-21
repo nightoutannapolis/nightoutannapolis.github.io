@@ -134,7 +134,7 @@
                     <input type="email" placeholder="Enter your email address" required style="flex: 1; min-width: 240px; margin: 0;">
                     <button type="submit" class="btn" style="padding: 13px 24px; white-space: nowrap;">Get Updates</button>
                 </form>
-                <div id="landingStatus" style="display: none; margin-top: 12px; font-size: 13px; font-weight: 700; color: #10b981;">Thanks! We'll notify you as soon as new dates drop.</div>
+                <div id="landingStatus" style="display: none; margin-top: 12px; font-size: 13px; font-weight: 700; color: #10b981;">Thanks! You have been added to the Email List.</div>
             </div>
         </section>
 
@@ -207,7 +207,7 @@
             .then(res => res.json())
             .then(data => {
                 statusDiv.style.display = 'block';
-                statusDiv.textContent = "Thanks! We'll notify you as soon as new dates drop.";
+                statusDiv.textContent = "Thanks! You have been added to the Email List.";
                 form.reset();
                 submitBtn.textContent = "Get Updates";
                 submitBtn.disabled = false;
@@ -215,7 +215,7 @@
             .catch(err => {
                 console.error("Error saving email:", err);
                 statusDiv.style.display = 'block';
-                statusDiv.textContent = "Thanks! We've recorded your email for updates.";
+                statusDiv.textContent = "Thanks! Your email has been added to our list.";
                 form.reset();
                 submitBtn.textContent = "Get Updates";
                 submitBtn.disabled = false;

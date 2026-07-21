@@ -21,7 +21,7 @@
         <div class="nav-links">
             <a href="/about/" class="nav-btn">About Us</a>
             <a href="/contact/" class="nav-btn">Contact</a>
-            <a href="/tracker/" class="nav-btn" style="background: var(--accent); color: #ffffff;">Track Pass</a>
+            <a href="/tracker/" class="nav-btn" style="background: var(--accent); color: #ffffff;">NightOut Portal</a>
         </div>
     </header>
 
@@ -36,6 +36,7 @@
     </div>
 
     <main>
+        <!-- HOW IT WORKS -->
         <section id="howItWorks">
             <h2 class="section-title">The Annapolis Experience</h2>
             <p class="section-subtitle">Three easy steps to an effortless, memorable night out in America's Sailing Capital.</p>
@@ -65,6 +66,7 @@
             </div>
         </section>
 
+        <!-- SAMPLE ITINERARY PREVIEW -->
         <section>
             <h2 class="section-title">Sample Itinerary Preview</h2>
             <p class="section-subtitle">Here is what a typical curated Annapolis evening looks like in action.</p>
@@ -94,6 +96,7 @@
             </div>
         </section>
 
+        <!-- TESTIMONIALS -->
         <section>
             <h2 class="section-title">Loved by Annapolis Locals</h2>
             <p class="section-subtitle">Here is what people are saying about their surprise night out experience.</p>
@@ -117,7 +120,31 @@
             </div>
         </section>
 
-        <section>
+        <!-- BOOKING CTA CARD -->
+        <section id="bookingSection">
+            <div id="bookingCard" class="form-modal-card">
+                <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--primary);">Ready for a Night Out?</h3>
+                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">Explore upcoming Friday and Saturday dates, view available start times, and secure your package.</p>
+                <a href="/booking/" class="btn" style="width: 100%; display: block;">View Available Dates & Start Times →</a>
+            </div>
+        </section>
+
+        <!-- EMAIL SUBSCRIPTION BOX -->
+        <section style="margin-top: 40px;">
+            <div class="form-modal-card" style="background: var(--sage); border: 1px solid rgba(43, 27, 54, 0.08);">
+                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 6px; color: var(--primary);">Don't See a Date or Time That Works?</h3>
+                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Join our email list to receive updates on new dates, special experiences, and upcoming slots for your NightOut.</p>
+                
+                <form id="landingEmailForm" onsubmit="handleEmailSubmit(event, 'landingStatus')" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <input type="email" placeholder="Enter your email address" required style="flex: 1; min-width: 240px; margin: 0;">
+                    <button type="submit" class="btn" style="padding: 13px 24px; white-space: nowrap;">Get Updates</button>
+                </form>
+                <div id="landingStatus" style="display: none; margin-top: 12px; font-size: 13px; font-weight: 700; color: #10b981;">Thanks! You're on the list for future NightOut updates.</div>
+            </div>
+        </section>
+
+        <!-- FAQ ACCORDION (MOVED TO BOTTOM) -->
+        <section style="margin-top: 60px;">
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Everything you need to know before booking your NightOut.</p>
 
@@ -140,14 +167,6 @@
                 </div>
             </div>
         </section>
-
-        <section id="bookingSection">
-            <div id="bookingCard" class="form-modal-card">
-                <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--primary);">Ready for a Night Out?</h3>
-                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">Explore upcoming Friday and Saturday dates, view available start times, and secure your package.</p>
-                <a href="/booking/" class="btn" style="width: 100%; display: block;">View Available Dates & Start Times →</a>
-            </div>
-        </section>
     </main>
 
     <footer>
@@ -163,6 +182,16 @@
                 q.parentElement.classList.toggle('active');
             });
         });
+
+        function handleEmailSubmit(event, statusId) {
+            event.preventDefault();
+            const statusDiv = document.getElementById(statusId);
+            const form = event.target;
+            
+            // Displays confirmation message
+            statusDiv.style.display = 'block';
+            form.reset();
+        }
     </script>
 </body>
 </html>

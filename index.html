@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NightOut Annapolis — Fully Curated Surprises for Couples</title>
+    
+    <!-- FAVICON LINK -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+
     <style>
         :root {
-            --bg-color: #fbfbf9;
+            --bg-color: #f6f8fb;
             --card-bg: #ffffff;
-            --primary: #0b172a;
-            --accent: #d4af37;
-            --text-main: #0b172a;
+            --primary: #111c2e; /* Exact Midnight Navy from Favicon */
+            --accent: #d8a236;  /* Exact Crescent Gold from Favicon */
+            --accent-hover: #eec35e;
+            --text-main: #111c2e;
             --text-muted: #64748b;
             --border-color: #e2e8f0;
         }
@@ -20,7 +25,7 @@
         body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
 
         header {
-            background: #0b172a; border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: var(--primary); border-bottom: 1px solid rgba(216, 162, 54, 0.2);
             position: sticky; top: 0; z-index: 100;
             padding: 16px 28px; display: flex; justify-content: space-between; align-items: center;
         }
@@ -31,27 +36,27 @@
             background: rgba(255,255,255,0.08); color: #ffffff; border: 1px solid rgba(255,255,255,0.15);
             padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.2s;
         }
-        .nav-btn:hover { background: rgba(255,255,255,0.18); }
+        .nav-btn:hover { background: rgba(255,255,255,0.18); border-color: var(--accent); }
 
         .hero {
             position: relative;
-            background: linear-gradient(rgba(11, 23, 42, 0.82), rgba(11, 23, 42, 0.82)), 
+            background: linear-gradient(rgba(17, 28, 46, 0.88), rgba(17, 28, 46, 0.88)), 
                         url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
             color: #ffffff; text-align: center; padding: 90px 20px 80px 20px; margin-bottom: 40px;
         }
         .hero-badge {
-            display: inline-block; background: rgba(212, 175, 55, 0.2); color: #fdf6d8;
+            display: inline-block; background: rgba(216, 162, 54, 0.18); color: var(--accent);
             font-size: 12px; font-weight: 700; padding: 6px 18px; border-radius: 50px;
-            backdrop-filter: blur(4px); margin-bottom: 18px; border: 1px solid rgba(212, 175, 55, 0.4); text-transform: uppercase; letter-spacing: 1px;
+            backdrop-filter: blur(4px); margin-bottom: 18px; border: 1px solid rgba(216, 162, 54, 0.4); text-transform: uppercase; letter-spacing: 1px;
         }
         .hero h1 { font-size: 44px; font-weight: 900; line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; }
         .hero p { font-size: 17px; color: #cbd5e1; max-width: 620px; margin: 0 auto 32px auto; font-weight: 400; }
 
         .btn {
-            background-color: var(--accent); color: #0b172a; border: none; padding: 14px 32px;
+            background-color: var(--accent); color: var(--primary); border: none; padding: 14px 32px;
             font-size: 15px; font-weight: 800; border-radius: 10px; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s;
         }
-        .btn:hover { background-color: #c49f2c; transform: translateY(-1px); }
+        .btn:hover { background-color: var(--accent-hover); transform: translateY(-1px); }
         .btn-secondary { background: #ffffff; color: var(--primary); }
 
         section { max-width: 860px; margin: 40px auto; padding: 0 20px; }
@@ -61,14 +66,39 @@
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
         .card-with-img {
             background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; overflow: hidden;
-            box-shadow: 0 4px 16px rgba(11, 23, 42, 0.03); text-align: left;
+            box-shadow: 0 4px 16px rgba(17, 28, 46, 0.04); text-align: left;
         }
         .card-img { width: 100%; height: 160px; object-fit: cover; }
         .card-body { padding: 22px; }
         .card-body h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; color: var(--primary); }
         .card-body p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5; }
 
-        .sample-box { background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; padding: 32px; box-shadow: 0 4px 16px rgba(11, 23, 42, 0.03); }
+        /* REVIEWS / TESTIMONIALS */
+        .review-card {
+            background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; padding: 24px;
+            box-shadow: 0 4px 16px rgba(17, 28, 46, 0.03); position: relative;
+        }
+        .stars { color: var(--accent); font-size: 16px; margin-bottom: 10px; }
+        .review-text { font-size: 13.5px; color: #334155; font-style: italic; margin-bottom: 14px; line-height: 1.6; }
+        .review-author { font-size: 12px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* FAQ ACCORDION */
+        .faq-container { background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; padding: 8px 24px; }
+        .faq-item { border-bottom: 1px solid var(--border-color); }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question {
+            padding: 18px 0; font-size: 15px; font-weight: 800; color: var(--primary);
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;
+        }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;
+            font-size: 13.5px; color: var(--text-muted); line-height: 1.6;
+        }
+        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 18px; }
+        .faq-icon { font-size: 18px; color: var(--accent); transition: transform 0.3s ease; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+        .sample-box { background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; padding: 32px; box-shadow: 0 4px 16px rgba(17, 28, 46, 0.03); }
         .sample-step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px dashed var(--border-color); }
         .sample-step:last-child { border-bottom: none; }
         .sample-time { font-weight: 800; font-size: 13px; color: var(--accent); width: 75px; flex-shrink: 0; }
@@ -77,7 +107,7 @@
 
         .form-modal-card {
             background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px;
-            padding: 40px 32px; box-shadow: 0 10px 30px rgba(11, 23, 42, 0.05); max-width: 560px; margin: 0 auto; text-align: center;
+            padding: 40px 32px; box-shadow: 0 10px 30px rgba(17, 28, 46, 0.05); max-width: 560px; margin: 0 auto; text-align: center;
         }
 
         footer {
@@ -94,7 +124,7 @@
         <div class="nav-links">
             <a href="/about/" class="nav-btn">About Us</a>
             <a href="/contact/" class="nav-btn">Contact</a>
-            <a href="/tracker/" class="nav-btn" style="background: var(--accent); color: #0b172a;">🔍 Track Pass</a>
+            <a href="/tracker/" class="nav-btn" style="background: var(--accent); color: var(--primary);">🔍 Track Pass</a>
         </div>
     </header>
 
@@ -170,6 +200,55 @@
             </div>
         </section>
 
+        <!-- CUSTOMER REVIEWS / TESTIMONIALS -->
+        <section>
+            <h2 class="section-title">Loved by Annapolis Couples</h2>
+            <p class="section-subtitle">Here is what couples are saying about their surprise date night experience.</p>
+
+            <div class="grid-3">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">"Took away all the stress of deciding where to go for our anniversary. Unlocking each stop on my phone during the night made us feel like kids again!"</div>
+                    <div class="review-author">— Sarah & Mark T., Baltimore MD</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">"We've lived in Annapolis for 5 years and NightOut took us to a subterranean cocktail bar right off Main Street we had never even noticed before. 10/10!"</div>
+                    <div class="review-author">— Chris & Elena R., Annapolis MD</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">"Super smooth experience. The timing between our drinks stop, dinner reservation, and dessert was completely spot on."</div>
+                    <div class="review-author">— David L., Severna Park MD</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FREQUENTLY ASKED QUESTIONS -->
+        <section>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Everything you need to know before booking your mystery date night.</p>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">What does the $49.99 package fee cover? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">The $49.99 fee covers our full concierge planning service, priority table reservations, and secret digital portal access. Food and beverage costs are paid directly to the local venues during your date night.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What if we have dietary restrictions or food allergies? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">After completing your booking, you'll be directed to our Guest Preferences Form where you can specify allergies, dietary needs (e.g., vegetarian, gluten-free, shellfish), and preferred dining atmospheres.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How does the Live Date Portal work? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">You will receive a confidential passcode via email. On date night, simply open the portal on your phone. A live countdown clock will unlock each destination's name, address, and special vouchers right as your evening progresses!</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Where are the stops located? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">All itineraries are concentrated in walkable areas of Downtown Annapolis, including historic Main Street, Ego Alley waterfront, and West Street.</div>
+                </div>
+            </div>
+        </section>
+
         <!-- BOOKING CTA -->
         <section id="bookingSection">
             <div id="bookingCard" class="form-modal-card">
@@ -187,5 +266,14 @@
         </div>
     </footer>
 
+    <script>
+        // FAQ Accordion Interactivity
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>

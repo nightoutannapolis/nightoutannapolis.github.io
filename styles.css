@@ -38,7 +38,7 @@ header {
     position: sticky; 
     top: 0; 
     z-index: 100;
-    padding: 16px 36px; 
+    padding: 16px 28px; 
     display: flex; 
     justify-content: space-between; 
     align-items: center;
@@ -176,7 +176,7 @@ section {
     margin-bottom: 38px; 
 }
 
-/* CARDS & STRICT 3-ACROSS GRID */
+/* FLUID RESPONSIVE GRID (3-ACROSS WHEN SPACE PERMITS) */
 .card {
     background-color: var(--card-bg); 
     border: 1px solid var(--border-color);
@@ -186,14 +186,8 @@ section {
 }
 .grid-3 { 
     display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
     gap: 28px; 
-}
-
-@media (max-width: 850px) {
-    .grid-3 {
-        grid-template-columns: 1fr;
-    }
 }
 
 .card-with-img {

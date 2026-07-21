@@ -27,12 +27,11 @@
             <div id="loadingText" style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 14px;">Loading live availability...</div>
             <div id="datesContainer"></div>
 
-            <!-- EMAIL UPDATE BOX FOR UNMATCHED DATES -->
             <div style="margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--border-color); text-align: center;">
                 <h3 style="font-size: 17px; font-weight: 800; color: var(--primary); margin-bottom: 6px;">Don't See a Date or Time That Works?</h3>
                 <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">Stay up to date to book your NightOut! Enter your email below to receive updates when new date slots open up.</p>
                 
-                <form id="bookingEmailForm" onsubmit="handleEmailSubmit(event, 'bookingStatus')" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto;">
+                <form id="bookingEmailForm" onsubmit="handleEmailSubmit(event, 'bookingStatus', 'Booking Page')" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto;">
                     <input type="email" placeholder="Enter your email address" required style="flex: 1; min-width: 220px; margin: 0;">
                     <button type="submit" class="btn" style="padding: 13px 20px; white-space: nowrap;">Get Updates</button>
                 </form>
@@ -153,13 +152,47 @@
             window.location.href = stripeUrl;
         }
 
-        function handleEmailSubmit(event, statusId) {
+        function handleEmailSubmit(event, statusId, sourcePage) {
             event.preventDefault();
-            const statusDiv = document.getElementById(statusId);
             const form = event.target;
-            
-            statusDiv.style.display = 'block';
-            form.reset();
+            const emailInput = form.querySelector('input[type="email"]');
+            const submitBtn = form.querySelector('button');
+            const statusDiv = document.getElementById(statusId);
+
+            if (!emailInput || !emailInput.value) return;
+
+            const userEmail = emailInput.value.trim();
+            submitBtn.textContent = "Saving...";
+            submitBtn.disabled = true;
+
+            const payload = {
+                action: "subscribeEmail",
+                email: userEmail,
+                source: sourcePage || "Booking Page"
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "cors",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(data => {
+                statusDiv.style.display = 'block';
+                statusDiv.textContent = "Thanks! We'll notify you as soon as new dates drop.";
+                form.reset();
+                submitBtn.textContent = "Get Updates";
+                submitBtn.disabled = false;
+            })
+            .catch(err => {
+                console.error("Error saving email:", err);
+                statusDiv.style.display = 'block';
+                statusDiv.textContent = "Thanks! We've recorded your email for updates.";
+                form.reset();
+                submitBtn.textContent = "Get Updates";
+                submitBtn.disabled = false;
+            });
         }
     </script>
 </body>

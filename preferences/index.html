@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Preferences — NightOut Annapolis</title>
+    <style>
+        :root {
+            --bg-color: #fbfbf9;
+            --card-bg: #ffffff;
+            --primary: #0b172a;
+            --accent: #d4af37;
+            --text-main: #0b172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+        body { background-color: var(--bg-color); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; }
+
+        header {
+            background: #0b172a; border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 18px 24px; text-align: center;
+        }
+        .logo { font-size: 22px; font-weight: 900; color: #ffffff; text-decoration: none; letter-spacing: -0.5px; }
+        .logo span { color: var(--accent); }
+
+        main { flex: 1; max-width: 560px; width: 100%; margin: 36px auto; padding: 0 20px; }
+
+        .card {
+            background-color: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 20px; padding: 40px 32px; box-shadow: 0 10px 30px rgba(11, 23, 42, 0.05); text-align: center;
+        }
+
+        h1 { font-size: 24px; font-weight: 900; color: var(--primary); margin-bottom: 8px; letter-spacing: -0.5px; }
+        p { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+
+        .selected-date-badge {
+            display: inline-block; background: #fdf8e6; color: var(--primary);
+            border: 1px solid rgba(212, 175, 55, 0.4); font-size: 13px; font-weight: 800;
+            padding: 8px 18px; border-radius: 50px; margin-bottom: 28px;
+        }
+
+        .form-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; margin-bottom: 6px; font-weight: 700; font-size: 12px; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; }
+        input[type="text"], input[type="tel"], input[type="email"], select {
+            width: 100%; padding: 13px 14px; border-radius: 10px; border: 1px solid var(--border-color);
+            background-color: #ffffff; color: var(--text-main); font-size: 14px; outline: none; transition: border-color 0.2s;
+        }
+        input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, select:focus {
+            border-color: var(--primary);
+        }
+
+        .btn {
+            background-color: var(--accent); color: #0b172a; border: none; padding: 15px;
+            font-size: 15px; font-weight: 800; border-radius: 10px; cursor: pointer; display: block; width: 100%; transition: all 0.2s;
+        }
+        .btn:hover { background-color: #c49f2c; }
+
+        footer { text-align: center; padding: 24px; font-size: 12px; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="logo">NightOut<span>Annapolis</span></a>
+    </header>
+
+    <main>
+        <div class="card">
+            <h1>Payment Confirmed! 🎉</h1>
+            <p>Tell us your preferences so our concierge team can curate your custom itinerary.</p>
+
+            <div id="dateDisplay" class="selected-date-badge">Scheduled Slot: Loading...</div>
+
+            <form id="preferencesForm">
+                <div class="form-group">
+                    <label for="names">1) First & Last Names (Both Guests):</label>
+                    <input type="text" id="names" placeholder="e.g. John Smith & Jane Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">2) Cell Phone Number:</label>
+                    <input type="tel" id="phone" placeholder="e.g. (410) 555-0199" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">3) Email Address:</label>
+                    <input type="email" id="email" placeholder="e.g. john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="diet">4) Dietary Restrictions / Food Allergies:</label>
+                    <input type="text" id="diet" placeholder="e.g. None, Vegetarian, Shellfish Allergy" required>
+                </div>
+                <div class="form-group">
+                    <label for="vibe">5) Preferred Date Atmosphere:</label>
+                    <select id="vibe" required>
+                        <option value="" disabled selected>Select a vibe...</option>
+                        <option value="Waterfront & Seafood">Waterfront & Fresh Seafood</option>
+                        <option value="Cozy & Intimate Wine Bar">Cozy & Intimate Wine Bar</option>
+                        <option value="Hidden Underground Gastropub">Hidden Underground Gastropub</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="priceTier">6) Target Dinner Spending Range:</label>
+                    <select id="priceTier" required>
+                        <option value="" disabled selected>Select target price...</option>
+                        <option value="$ ($15-25 per person)">$ — Budget Friendly</option>
+                        <option value="$$ ($25-40 per person)">$$ — Moderate / Standard</option>
+                        <option value="$$$ ($40-65 per person)">$$$ — Upscale Dining</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">Lock In Preferences & Get Pass 🔐</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>&copy; 2026 NightOut Annapolis. Made by locals.</footer>
+
+    <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzK5qTseJuvbgz7uOT056mxcE2o-JESYaNkLnEhcASWbCfFkzxJ-SFBcqgxnPk8jW7-/exec";
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedSlot = localStorage.getItem('chosenDate');
+            const badge = document.getElementById('dateDisplay');
+            if (savedSlot) {
+                badge.textContent = "Scheduled Slot: " + savedSlot;
+            } else {
+                badge.textContent = "Scheduled Slot: Date Confirmed";
+            }
+        });
+
+        document.getElementById('preferencesForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const submitBtn = e.target.querySelector('button');
+            submitBtn.textContent = "Saving & Emailing Pass...";
+            submitBtn.disabled = true;
+
+            const payload = {
+                date: localStorage.getItem('chosenDate') || "Confirmed Date Slot",
+                names: document.getElementById('names').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                diet: document.getElementById('diet').value,
+                vibe: document.getElementById('vibe').value,
+                priceTier: document.getElementById('priceTier').value
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST", mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                alert('Preferences locked in! Check your email for your date passcode.');
+                window.location.href = "/tracker/";
+            })
+            .catch(err => {
+                console.error(err);
+                alert('An error occurred while saving preferences. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Lock In Preferences & Get Pass 🔐";
+            });
+        });
+    </script>
+</body>
+</html>

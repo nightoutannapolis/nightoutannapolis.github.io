@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Portal — NightOut Annapolis</title>
+    <style>
+        :root {
+            --bg-color: #fbfbf9;
+            --card-bg: #ffffff;
+            --primary: #0b172a;
+            --accent: #d4af37;
+            --accent-soft: #fdf8e6;
+            --text-main: #0b172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+        body { background-color: var(--bg-color); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; }
+
+        header {
+            background: #0b172a; border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 18px 24px; text-align: center;
+        }
+        .logo { font-size: 22px; font-weight: 900; color: #ffffff; text-decoration: none; letter-spacing: -0.5px; }
+        .logo span { color: var(--accent); }
+
+        main { flex: 1; max-width: 500px; width: 100%; margin: 36px auto; padding: 0 20px; }
+
+        .card {
+            background-color: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 20px; padding: 32px 28px; box-shadow: 0 10px 30px rgba(11, 23, 42, 0.04); text-align: center;
+        }
+
+        h2 { font-size: 22px; font-weight: 800; margin-bottom: 6px; color: var(--primary); letter-spacing: -0.5px; }
+        p { color: var(--text-muted); font-size: 13px; margin-bottom: 24px; }
+
+        input[type="text"] {
+            width: 100%; padding: 14px; border-radius: 10px; border: 1.5px solid var(--border-color);
+            background: #ffffff; font-size: 18px; font-weight: 800; text-align: center; letter-spacing: 3px;
+            text-transform: uppercase; margin-bottom: 16px; outline: none; transition: border-color 0.2s;
+        }
+        input[type="text"]:focus { border-color: var(--primary); }
+
+        .btn {
+            display: block; width: 100%; background-color: var(--primary); color: white;
+            border: none; padding: 14px; font-size: 14px; font-weight: 700; border-radius: 10px;
+            cursor: pointer; text-decoration: none; transition: background 0.2s;
+        }
+        .btn:hover { background-color: #1a273e; }
+
+        .scanner-box { background: #0b172a; color: #ffffff; border-radius: 14px; padding: 24px; margin-top: 20px; display: none; }
+        .progress-bar-bg { background: rgba(255,255,255,0.1); border-radius: 20px; height: 8px; width: 100%; margin: 16px 0; overflow: hidden; }
+        .progress-bar-fill { background: var(--accent); height: 100%; width: 0%; transition: width 0.3s; }
+
+        .portal-header {
+            background: #fbfbf9; border: 1px solid var(--border-color); border-radius: 12px;
+            padding: 16px; text-align: center; margin-bottom: 20px;
+        }
+
+        .event-card-stage {
+            background: #ffffff; border: 1.5px solid var(--primary); border-radius: 18px;
+            padding: 24px; text-align: left; box-shadow: 0 4px 16px rgba(11, 23, 42, 0.05); margin-bottom: 20px;
+        }
+
+        .countdown-timer-box {
+            background: var(--accent-soft); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 12px;
+            padding: 16px; text-align: center; margin: 18px 0;
+        }
+        .timer-digits { font-family: monospace; font-size: 26px; font-weight: 900; color: var(--primary); letter-spacing: 1px; }
+
+        .nav-controls { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+        .btn-nav {
+            background: #fbfbf9; color: var(--primary); border: 1px solid var(--border-color);
+            padding: 10px 18px; font-size: 12px; font-weight: 700; border-radius: 8px; cursor: pointer;
+        }
+        .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        footer { text-align: center; padding: 24px; font-size: 12px; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="logo">NightOut<span>Annapolis</span></a>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>Date Portal Access</h2>
+            <p>Enter your Passcode to open your interactive date portal:</p>
+
+            <input type="text" id="codeInput" placeholder="e.g. 0826-491">
+            <button class="btn" onclick="startDecryptSequence()">Access Portal →</button>
+
+            <div id="scannerBox" class="scanner-box">
+                <div style="font-size: 11px; color: #94a3b8; font-weight: 700; letter-spacing: 1.5px;">DECRYPTING ACCESS PASS</div>
+                <div class="progress-bar-bg"><div id="progressFill" class="progress-bar-fill"></div></div>
+                <div id="statusLog" style="font-family: monospace; font-size: 12px; color: #38bdf8;">Connecting to server...</div>
+            </div>
+
+            <div id="resultsContainer" style="display: none; margin-top: 24px;">
+                <div class="portal-header">
+                    <h3 id="displayNames" style="font-size: 17px; color: var(--primary); font-weight: 800;">—</h3>
+                    <div id="displayDate" style="font-size: 12px; color: var(--text-muted); font-weight: 600;">—</div>
+                </div>
+
+                <div id="eventStage" class="event-card-stage"></div>
+
+                <div class="nav-controls">
+                    <button id="prevBtn" class="btn-nav" onclick="changeStep(-1)">← Previous</button>
+                    <span id="stepIndicator" style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Step 1 of 3</span>
+                    <button id="nextBtn" class="btn-nav" onclick="changeStep(1)">Next →</button>
+                </div>
+            </div>
+
+            <a href="/" style="display: block; text-align: center; margin-top: 24px; color: var(--text-muted); font-size: 12px; font-weight: 600; text-decoration: none;">← Return to Main Page</a>
+        </div>
+    </main>
+
+    <footer>&copy; 2026 NightOut Annapolis. Made by locals.</footer>
+
+    <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzK5qTseJuvbgz7uOT056mxcE2o-JESYaNkLnEhcASWbCfFkzxJ-SFBcqgxnPk8jW7-/exec";
+        let currentItinerary = [];
+        let currentStepIndex = 0;
+        let overriddenSteps = new Set();
+        let timerInterval = null;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const codeParam = urlParams.get('code');
+            if (codeParam) {
+                document.getElementById('codeInput').value = codeParam;
+                startDecryptSequence();
+            }
+        });
+
+        function startDecryptSequence() {
+            const code = document.getElementById('codeInput').value.trim();
+            if (!code) return alert('Please enter your passcode.');
+
+            const scannerBox = document.getElementById('scannerBox');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const fill = document.getElementById('progressFill');
+            const log = document.getElementById('statusLog');
+
+            resultsContainer.style.display = "none";
+            scannerBox.style.display = "block";
+            fill.style.width = "0%";
+
+            const apiPromise = fetch(GOOGLE_SCRIPT_URL + "?code=" + encodeURIComponent(code)).then(res => res.json());
+
+            setTimeout(() => { fill.style.width = "35%"; log.textContent = "Verifying Passcode credentials..."; }, 200);
+            setTimeout(() => { fill.style.width = "70%"; log.textContent = "Syncing Annapolis Reservations..."; }, 800);
+            setTimeout(() => { fill.style.width = "95%"; log.textContent = "Decrypting time locks..."; }, 1500);
+
+            Promise.all([apiPromise, new Promise(resolve => setTimeout(resolve, 1800))])
+            .then(([data]) => {
+                fill.style.width = "100%";
+                setTimeout(() => {
+                    scannerBox.style.display = "none";
+                    if (data.found) {
+                        document.getElementById('displayNames').textContent = data.names;
+                        document.getElementById('displayDate').textContent = "Scheduled Date: " + cleanDateText(data.date);
+                        currentItinerary = data.itinerary || [];
+                        currentStepIndex = 0;
+                        
+                        renderSingleEventStage();
+                        resultsContainer.style.display = "block";
+                    } else {
+                        alert('Passcode not found. Please double-check your code.');
+                    }
+                }, 300);
+            });
+        }
+
+        function cleanDateText(raw) {
+            if (!raw) return "";
+            var str = raw.toString().trim();
+            if (str.includes("GMT") || str.includes("T")) {
+                var d = new Date(str);
+                if (!isNaN(d.getTime())) {
+                    return d.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+                }
+            }
+            return str;
+        }
+
+        function parseTimeDetails(timeStr) {
+            if (!timeStr) return { display: "Scheduled Time", totalMinutes: 0 };
+            var str = timeStr.toString().trim();
+
+            if (str.includes("GMT") || str.includes("T")) {
+                var d = new Date(str);
+                if (!isNaN(d.getTime())) {
+                    var hrs = d.getHours();
+                    var mins = d.getMinutes();
+                    var display = d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
+                    return { display: display, totalMinutes: hrs * 60 + mins };
+                }
+            }
+
+            var isPM = str.toUpperCase().includes("PM");
+            var isAM = str.toUpperCase().includes("AM");
+            var clean = str.replace(/AM|PM/gi, '').trim();
+            var parts = clean.split(":");
+
+            var hours = parseInt(parts[0], 10) || 0;
+            var minutes = parseInt(parts[1], 10) || 0;
+
+            if (isPM && hours < 12) hours += 12;
+            if (isAM && hours === 12) hours = 0;
+
+            var displayHours = hours % 12 || 12;
+            var displayMins = minutes < 10 ? "0" + minutes : minutes;
+            var displayAMPM = hours >= 12 ? "PM" : "AM";
+            var formattedDisplay = isAM || isPM ? str : (displayHours + ":" + displayMins + " " + displayAMPM);
+
+            return {
+                display: formattedDisplay,
+                totalMinutes: (hours * 60) + minutes
+            };
+        }
+
+        function renderSingleEventStage() {
+            const stage = document.getElementById('eventStage');
+            if (timerInterval) clearInterval(timerInterval);
+
+            if (currentItinerary.length === 0) {
+                stage.innerHTML = "<div style='text-align:center; font-size:13px; color:#64748b;'>Your itinerary is currently being locked in. Check back closer to your date!</div>";
+                return;
+            }
+
+            const step = currentItinerary[currentStepIndex];
+            const now = new Date();
+            const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+            const timeDetails = parseTimeDetails(step.time);
+            const isTimeReached = currentMinutes >= timeDetails.totalMinutes;
+            const isUnlocked = isTimeReached || overriddenSteps.has(currentStepIndex);
+
+            document.getElementById('stepIndicator').textContent = `Step ${currentStepIndex + 1} of ${currentItinerary.length}`;
+            document.getElementById('prevBtn').disabled = currentStepIndex === 0;
+            document.getElementById('nextBtn').disabled = currentStepIndex === currentItinerary.length - 1;
+
+            if (isUnlocked) {
+                stage.innerHTML = `
+                    <div style="font-size: 11px; font-weight: 800; color: #16a34a; text-transform: uppercase; letter-spacing: 0.5px;">UNLOCKED ITEM</div>
+                    <div style="font-size: 18px; font-weight: 800; color: var(--primary); margin-top: 4px;">🔓 Step ${currentStepIndex + 1} — ${step.title}</div>
+                    <div style="font-size: 14px; font-weight: 700; margin-top: 6px; color: var(--accent);">📍 ${step.location}</div>
+                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px; line-height: 1.5;">${step.details}</div>
+                `;
+            } else {
+                stage.innerHTML = `
+                    <div style="font-size: 11px; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;">TIME-LOCKED EVENT</div>
+                    <div style="font-size: 16px; font-weight: 800; color: var(--primary); margin-top: 4px;">🔒 Scheduled for ${timeDetails.display}</div>
+                    
+                    <div class="countdown-timer-box">
+                        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Unlocks In</div>
+                        <div id="countdownClock" class="timer-digits">00:00:00</div>
+                    </div>
+
+                    <div style="font-size: 12px; color: var(--text-muted);">Destination details unlock automatically when the scheduled time arrives.</div>
+                    <button style="background:#fbfbf9; border:1px solid #e2e8f0; padding:8px 14px; font-size:11px; font-weight:700; border-radius:8px; cursor:pointer; margin-top:14px; color: var(--primary);" onclick="manualUnlockCurrent()">⚡ Force Unlock Step Early</button>
+                `;
+
+                startCountdownTimer(timeDetails.totalMinutes);
+            }
+        }
+
+        function changeStep(direction) {
+            currentStepIndex += direction;
+            renderSingleEventStage();
+        }
+
+        function manualUnlockCurrent() {
+            overriddenSteps.add(currentStepIndex);
+            renderSingleEventStage();
+        }
+
+        function startCountdownTimer(targetTotalMinutes) {
+            function updateClock() {
+                const now = new Date();
+                const currentMins = now.getHours() * 60 + now.getMinutes();
+                const currentSecs = now.getSeconds();
+
+                let diffMins = targetTotalMinutes - currentMins - 1;
+                let diffSecs = 60 - currentSecs;
+
+                if (diffSecs === 60) {
+                    diffSecs = 0;
+                    diffMins += 1;
+                }
+
+                if (diffMins < 0) {
+                    renderSingleEventStage();
+                    return;
+                }
+
+                const hrs = Math.floor(diffMins / 60);
+                const mins = diffMins % 60;
+
+                const clockElem = document.getElementById('countdownClock');
+                if (clockElem) {
+                    clockElem.textContent = 
+                        (hrs < 10 ? "0" + hrs : hrs) + ":" + 
+                        (mins < 10 ? "0" + mins : mins) + ":" + 
+                        (diffSecs < 10 ? "0" + diffSecs : diffSecs);
+                }
+            }
+            updateClock();
+            timerInterval = setInterval(updateClock, 1000);
+        }
+    </script>
+</body>
+</html>

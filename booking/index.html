@@ -12,6 +12,11 @@
 
     <header>
         <a href="/" class="logo">NightOut<span>Annapolis</span></a>
+        <div class="nav-links">
+            <a href="/about/" class="nav-btn">About Us</a>
+            <a href="/contact/" class="nav-btn">Contact</a>
+            <a href="/tracker/" class="nav-btn" style="background: var(--accent); color: #ffffff;">NightOut Portal</a>
+        </div>
     </header>
 
     <main>
@@ -22,7 +27,19 @@
             <div id="loadingText" style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 14px;">Loading live availability...</div>
             <div id="datesContainer"></div>
 
-            <a href="/" style="display: block; text-align: center; margin-top: 24px; color: var(--text-muted); font-size: 13px; font-weight: 600; text-decoration: none;">← Back to Overview</a>
+            <!-- EMAIL UPDATE BOX FOR UNMATCHED DATES -->
+            <div style="margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--border-color); text-align: center;">
+                <h3 style="font-size: 17px; font-weight: 800; color: var(--primary); margin-bottom: 6px;">Don't See a Date or Time That Works?</h3>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">Stay up to date to book your NightOut! Enter your email below to receive updates when new date slots open up.</p>
+                
+                <form id="bookingEmailForm" onsubmit="handleEmailSubmit(event, 'bookingStatus')" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto;">
+                    <input type="email" placeholder="Enter your email address" required style="flex: 1; min-width: 220px; margin: 0;">
+                    <button type="submit" class="btn" style="padding: 13px 20px; white-space: nowrap;">Get Updates</button>
+                </form>
+                <div id="bookingStatus" style="display: none; margin-top: 12px; font-size: 13px; font-weight: 700; color: #10b981;">Thanks! We'll notify you as soon as new dates drop.</div>
+            </div>
+
+            <a href="/" style="display: block; text-align: center; margin-top: 28px; color: var(--text-muted); font-size: 13px; font-weight: 600; text-decoration: none;">← Back to Overview</a>
         </div>
     </main>
 
@@ -101,7 +118,7 @@
                         
                         if (isAvailable) {
                             const stockBadge = item.quantity === 1 
-                                ? `<div style="background: var(--coral); color: #ffffff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 12px; margin-top: 4px; display: inline-block;">⚡ ONLY 1 SLOT LEFT</div>`
+                                ? `<div style="background: var(--coral); color: #ffffff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 12px; margin-top: 4px; display: inline-block;">ONLY 1 SLOT LEFT</div>`
                                 : `<div class="time-sub">${item.quantity} Slots Left ($${item.price})</div>`;
 
                             slotsHtml += `
@@ -134,6 +151,15 @@
         function bookTimeSlot(slotKey, stripeUrl) {
             localStorage.setItem('chosenDate', slotKey);
             window.location.href = stripeUrl;
+        }
+
+        function handleEmailSubmit(event, statusId) {
+            event.preventDefault();
+            const statusDiv = document.getElementById(statusId);
+            const form = event.target;
+            
+            statusDiv.style.display = 'block';
+            form.reset();
         }
     </script>
 </body>

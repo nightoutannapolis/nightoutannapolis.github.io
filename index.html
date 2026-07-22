@@ -19,9 +19,9 @@
     <header>
         <a href="/" class="logo">NightOut<span>Annapolis</span></a>
         <div class="nav-links">
-            <a href="/about/" class="nav-btn">About Us</a>
+            <a href="/about/" class="nav-btn">About</a>
             <a href="/contact/" class="nav-btn">Contact</a>
-            <a href="/tracker/" class="nav-btn" style="background: var(--accent); color: #ffffff;">NightOut Portal</a>
+            <a href="/tracker/" class="nav-btn primary-nav">Portal</a>
         </div>
     </header>
 
@@ -29,7 +29,7 @@
         <span class="hero-badge">Local Annapolis Nights</span>
         <h1>Ditch the Planning.<br>Keep the Fun</h1>
         <p>We craft confidential, surprise night itineraries—combining fun activities, local restaurants, and secret dessert spots.</p>
-        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <div class="hero-actions">
             <a href="/booking/" class="btn">View Available Times →</a>
             <a href="/tracker/" class="btn btn-secondary">Access Live Portal</a>
         </div>
@@ -119,26 +119,26 @@
 
         <section id="bookingSection">
             <div id="bookingCard" class="form-modal-card">
-                <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--primary);">Ready for a Night Out?</h3>
-                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">Explore upcoming Friday and Saturday dates, view available start times, and secure your package.</p>
-                <a href="/booking/" class="btn" style="width: 100%; display: block;">View Available Dates & Start Times →</a>
+                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 6px; color: var(--primary);">Ready for a Night Out?</h3>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Explore upcoming Friday and Saturday dates, view available start times, and secure your package.</p>
+                <a href="/booking/" class="btn">View Available Dates & Start Times →</a>
             </div>
         </section>
 
-        <section style="margin-top: 40px;">
+        <section style="margin-top: 32px;">
             <div class="form-modal-card" style="background: var(--sage); border: 1px solid rgba(43, 27, 54, 0.08);">
-                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 6px; color: var(--primary);">Don't See a Date or Time That Works?</h3>
-                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Join our email list to receive updates on new dates, special experiences, and upcoming slots for your NightOut.</p>
+                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px; color: var(--primary);">Don't See a Date or Time That Works?</h3>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Join our email list to receive updates on new dates, special experiences, and upcoming slots for your NightOut.</p>
                 
-                <form id="landingEmailForm" onsubmit="handleEmailSubmit(event, 'landingStatus', 'Landing Page')" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                    <input type="email" placeholder="Enter your email address" required style="flex: 1; min-width: 240px; margin: 0;">
-                    <button type="submit" class="btn" style="padding: 13px 24px; white-space: nowrap;">Get Updates</button>
+                <form id="landingEmailForm" onsubmit="handleEmailSubmit(event, 'landingStatus', 'Landing Page')" style="display: flex; flex-direction: column; gap: 8px;">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn">Get Updates</button>
                 </form>
-                <div id="landingStatus" style="display: none; margin-top: 12px; font-size: 13px; font-weight: 700; color: #10b981;">Thanks! You have been added to the Email List.</div>
+                <div id="landingStatus" style="display: none; margin-top: 10px; font-size: 12.5px; font-weight: 700; color: #10b981;">Thanks! You have been added to the Email List.</div>
             </div>
         </section>
 
-        <section style="margin-top: 60px;">
+        <section style="margin-top: 48px;">
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Everything you need to know before booking your NightOut.</p>
 
@@ -165,7 +165,7 @@
 
     <footer>
         &copy; 2026 NightOut Annapolis. Made by locals, supporting local businesses.
-        <div style="margin-top: 8px;">
+        <div style="margin-top: 6px;">
             <a href="/about/">About Us</a> • <a href="/contact/">Contact Us</a>
         </div>
     </footer>

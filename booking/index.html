@@ -13,32 +13,32 @@
     <header>
         <a href="/" class="logo">NightOut<span>Annapolis</span></a>
         <div class="nav-links">
-            <a href="/about/" class="nav-btn">About Us</a>
-            <a href="/contact/" class="nav-btn">Contact</a>
-            <a href="/tracker/" class="nav-btn" style="background: var(--accent); color: #ffffff;">NightOut Portal</a>
+            <a href="/about/" class="nav-btn secondary-nav">About</a>
+            <a href="/contact/" class="nav-btn secondary-nav">Contact</a>
+            <a href="/tracker/" class="nav-btn primary-nav">NightOut Portal</a>
         </div>
     </header>
 
     <main>
         <div class="card">
-            <h2>Select Date & Start Time</h2>
-            <p>All reservations and activity passes are curated around your start time.</p>
+            <h2 style="font-size: 22px; font-weight: 900; margin-bottom: 4px; color: var(--primary);">Select Date & Start Time</h2>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">All reservations and activity passes are curated around your start time.</p>
 
-            <div id="loadingText" style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 14px;">Loading live availability...</div>
+            <div id="loadingText" style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 13px;">Loading live availability...</div>
             <div id="datesContainer"></div>
 
-            <div style="margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--border-color); text-align: center;">
-                <h3 style="font-size: 17px; font-weight: 800; color: var(--primary); margin-bottom: 6px;">Don't See a Date or Time That Works?</h3>
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">Stay up to date to book your NightOut! Enter your email below to receive updates when new date slots open up.</p>
+            <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-color); text-align: center;">
+                <h3 style="font-size: 16px; font-weight: 800; color: var(--primary); margin-bottom: 6px;">Don't See a Date or Time That Works?</h3>
+                <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 16px;">Stay up to date to book your NightOut! Enter your email below to receive updates when new date slots open up.</p>
                 
-                <form id="bookingEmailForm" onsubmit="handleEmailSubmit(event, 'bookingStatus', 'Booking Page')" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto;">
-                    <input type="email" placeholder="Enter your email address" required style="flex: 1; min-width: 220px; margin: 0;">
-                    <button type="submit" class="btn" style="padding: 13px 20px; white-space: nowrap;">Get Updates</button>
+                <form id="bookingEmailForm" onsubmit="handleEmailSubmit(event, 'bookingStatus', 'Booking Page')" style="display: flex; flex-direction: column; gap: 8px; max-width: 400px; margin: 0 auto;">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn">Get Updates</button>
                 </form>
-                <div id="bookingStatus" style="display: none; margin-top: 12px; font-size: 13px; font-weight: 700; color: #10b981;">Thanks! You have been added to the Email List.</div>
+                <div id="bookingStatus" style="display: none; margin-top: 10px; font-size: 12.5px; font-weight: 700; color: #10b981;">Thanks! You have been added to the Email List.</div>
             </div>
 
-            <a href="/" style="display: block; text-align: center; margin-top: 28px; color: var(--text-muted); font-size: 13px; font-weight: 600; text-decoration: none;">← Back to Overview</a>
+            <a href="/" style="display: block; text-align: center; margin-top: 24px; color: var(--text-muted); font-size: 12.5px; font-weight: 600; text-decoration: none;">← Back to Overview</a>
         </div>
     </main>
 
@@ -89,7 +89,7 @@
                 container.innerHTML = "";
 
                 if (!data || data.length === 0) {
-                    container.innerHTML = "<div style='text-align:center; color:#64748b;'>No available dates listed right now. Check back soon!</div>";
+                    container.innerHTML = "<div style='text-align:center; color:#64748b; font-size:13px;'>No available dates listed right now. Check back soon!</div>";
                     return;
                 }
 

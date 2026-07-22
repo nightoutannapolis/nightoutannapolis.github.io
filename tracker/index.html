@@ -3,25 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Experience Timeline — NightOut Annapolis</title>
+    <title>NightOut Portal — NightOut Annapolis</title>
     
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="../styles.css">
+
+    <!-- FALLBACK CSS FOR GUARANTEED PORTAL STYLING -->
+    <style>
+        .portal-info-box {
+            background: #e6f7f3;
+            border: 1px solid rgba(43, 27, 54, 0.12);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 13px;
+            color: #2b1b36;
+            line-height: 1.5;
+        }
+        .portal-info-box strong {
+            color: #2b1b36;
+        }
+        @media (max-width: 639px) {
+            .nav-btn.secondary-nav { display: none !important; }
+        }
+    </style>
 </head>
 <body>
 
     <header>
-        <a href="/" class="logo">NightOut<span>Annapolis</span></a>
+        <a href="../" class="logo">NightOut<span>Annapolis</span></a>
+        <div class="nav-links">
+            <a href="../about/" class="nav-btn secondary-nav">About</a>
+            <a href="../contact/" class="nav-btn secondary-nav">Contact</a>
+            <a href="../tracker/" class="nav-btn primary-nav">NightOut Portal</a>
+        </div>
     </header>
 
-    <main style="max-width: 640px;">
-        <div id="loginCard" class="card" style="display: none; text-align: center;">
-            <h2>Portal Access</h2>
-            <p class="subtitle">Enter your Passcode to unlock your interactive timeline:</p>
-            <input type="text" id="codeInput" placeholder="e.g. 0826-491">
-            <button class="btn" style="width: 100%;" onclick="fetchItinerary()">Access Timeline →</button>
+    <main style="max-width: 580px;">
+        <!-- LOGIN CARD -->
+        <div id="loginCard" class="card" style="text-align: center;">
+            <h2 style="font-size: 22px; font-weight: 900; margin-bottom: 8px; color: var(--primary);">NightOut Portal</h2>
+            
+            <div class="portal-info-box">
+                <strong>How to access your experience:</strong>
+                <p style="margin-top: 6px;">After you checkout and complete the preferences form for the person making the date, a secret access passcode will be emailed to you.</p>
+                <p style="margin-top: 6px;">Enter your passcode below on your night out to unlock your step-by-step itinerary, venue details, and special vouchers!</p>
+            </div>
+
+            <div class="form-group">
+                <label for="codeInput">Enter Your Secret Passcode:</label>
+                <input type="text" id="codeInput" placeholder="e.g. 0826-491" style="text-align: center; font-size: 18px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">
+            </div>
+
+            <button class="btn" style="width: 100%; margin-top: 8px;" onclick="fetchItinerary()">Access Live Itinerary →</button>
+
+            <p style="font-size: 11.5px; color: var(--text-muted); margin-top: 16px;">
+                Haven't booked yet? <a href="../booking/" style="color: var(--primary); font-weight: 700; text-decoration: underline;">View available dates & start times</a>
+            </p>
         </div>
 
+        <!-- TIMELINE DISPLAY CARD -->
         <div id="timelineCard" class="card" style="display: none;">
             <div class="portal-header">
                 <h3 id="displayNames" style="font-size: 18px; color: var(--primary); font-weight: 900; margin-bottom: 2px;">—</h3>
@@ -32,7 +74,7 @@
 
             <div id="timelineList" class="timeline-container"></div>
 
-            <a href="/" class="btn" style="background: transparent; color: var(--text-muted); border: 1px solid var(--border-color); width: 100%; margin-top: 20px;">← Return to Main Page</a>
+            <a href="../" class="btn" style="background: transparent; color: var(--text-muted); border: 1px solid var(--border-color); width: 100%; margin-top: 20px;">← Return to Main Page</a>
         </div>
     </main>
 
@@ -51,8 +93,6 @@
             if (codeParam) {
                 document.getElementById('codeInput').value = codeParam;
                 fetchItinerary(codeParam);
-            } else {
-                document.getElementById('loginCard').style.display = 'block';
             }
         });
 
@@ -75,7 +115,7 @@
 
                     renderTimeline();
                 } else {
-                    alert('Passcode not found. Please verify your code.');
+                    alert('Passcode not found. Please double check your code or verify your confirmation email.');
                     document.getElementById('loginCard').style.display = 'block';
                 }
             })

@@ -142,15 +142,22 @@
             return str;
         }
 
+        // UPDATED CLEAN DATE FUNCTION - PREVENTS 2001 BUG
         function formatCleanDate(dateStr) {
             if (!dateStr) return "";
             var str = dateStr.toString().trim();
+
+            // Try to parse full JavaScript timestamp or ISO string
             if (str.includes("GMT") || str.includes("T")) {
                 var d = new Date(str);
                 if (!isNaN(d.getTime())) {
-                    return d.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+                    return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
                 }
             }
+
+            // Strip out 4-digit years like 2001, 2024, etc.
+            str = str.replace(/,?\s*\b(2001|2000|1999|202\d|203\d)\b/gi, '').trim();
+
             return str;
         }
 

@@ -35,21 +35,21 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
 }
 
-/* MOBILE-FIRST HEADER */
+/* HEADER */
 header {
     background: var(--primary); 
     border-bottom: 2px solid var(--accent);
     position: sticky; 
     top: 0; 
     z-index: 1000;
-    padding: 12px 16px; 
+    padding: 14px 20px; 
     display: flex; 
     justify-content: space-between; 
     align-items: center;
     width: 100%;
 }
 .logo { 
-    font-size: 18px; 
+    font-size: 20px; 
     font-weight: 900; 
     color: #ffffff; 
     text-decoration: none; 
@@ -69,7 +69,7 @@ header {
     background: rgba(255,255,255,0.12); 
     color: #ffffff; 
     border: 1px solid rgba(255,255,255,0.2);
-    padding: 6px 12px; 
+    padding: 8px 14px; 
     border-radius: 8px; 
     font-size: 12px; 
     font-weight: 700; 
@@ -185,8 +185,8 @@ section {
 .card {
     background-color: var(--card-bg); 
     border: 1px solid var(--border-color);
-    border-radius: 18px; 
-    padding: 20px 16px; 
+    border-radius: 20px; 
+    padding: 24px 20px; 
     box-shadow: 0 6px 20px rgba(43, 27, 54, 0.04);
 }
 .grid-3 { 
@@ -365,33 +365,37 @@ input[type="text"], input[type="tel"], input[type="email"], select {
     outline: none; 
 }
 
-/* BOOKING SLOTS GRID STYLING */
+/* BOOKING SLOTS GRID STYLING - FIXED LAYOUT */
 .date-group { 
     border: 1px solid var(--border-color); 
-    border-radius: 16px; 
-    padding: 16px; 
-    margin-bottom: 16px; 
+    border-radius: 18px; 
+    padding: 20px; 
+    margin-bottom: 20px; 
     background: #ffffff; 
-    box-shadow: 0 4px 12px rgba(43, 27, 54, 0.02);
+    box-shadow: 0 4px 14px rgba(43, 27, 54, 0.03);
 }
 .date-title { 
-    font-size: 16px; 
+    font-size: 17px; 
     font-weight: 800; 
     color: var(--primary); 
-    margin-bottom: 12px; 
+    margin-bottom: 14px; 
     letter-spacing: -0.3px; 
 }
 .time-slots-grid { 
-    display: flex;
-    flex-direction: column;
-    gap: 10px; 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px; 
 }
 .time-slot { 
     border: 1px dashed var(--border-color); 
-    border-radius: 12px; 
-    padding: 14px 12px; 
+    border-radius: 14px; 
+    padding: 16px 12px; 
     text-align: center; 
     background: #ffffff; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .time-slot.available { 
     border: 1.5px solid var(--primary); 
@@ -401,6 +405,8 @@ input[type="text"], input[type="tel"], input[type="email"], select {
 .time-slot.available:hover { 
     background: var(--primary); 
     color: #ffffff; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(43, 27, 54, 0.15);
 }
 .time-slot.available:hover .time-sub { 
     color: #e2dce8; 
@@ -417,7 +423,7 @@ input[type="text"], input[type="tel"], input[type="email"], select {
     font-weight: 800; 
 }
 .time-sub { 
-    font-size: 11px; 
+    font-size: 11.5px; 
     color: var(--text-muted); 
     margin-top: 4px; 
     font-weight: 600; 
@@ -431,7 +437,7 @@ input[type="text"], input[type="tel"], input[type="email"], select {
     padding: 3px 8px; 
     border-radius: 20px; 
     text-transform: uppercase; 
-    margin-top: 4px; 
+    margin-top: 6px; 
 }
 
 /* FOOTER */
@@ -452,14 +458,14 @@ footer a {
     margin: 0 4px; 
 }
 
-/* MOBILE SPECIFIC RULE: HIDE SECONDARY NAV LINKS ON MOBILE */
+/* HIDE SECONDARY NAV LINKS ON MOBILE */
 @media (max-width: 639px) {
     .nav-btn.secondary-nav {
         display: none !important;
     }
 }
 
-/* DESKTOP RESPONSIVE BREAKPOINT */
+/* DESKTOP BREAKPOINT */
 @media (min-width: 640px) {
     header {
         padding: 14px 28px;
@@ -496,9 +502,5 @@ footer a {
     }
     .section-title {
         font-size: 28px;
-    }
-    .time-slots-grid { 
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     }
 }

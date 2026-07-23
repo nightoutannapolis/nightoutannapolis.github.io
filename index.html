@@ -3,304 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NightOut Annapolis — Curated Secret Date Evenings</title>
-    
+    <title>NightOut Annapolis — Turnkey Surprise Date Nights</title>
+
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="/styles.css">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nightoutannapolis.github.io/">
-    <meta property="og:title" content="NightOut Annapolis — Effortless Date Nights">
-    <meta property="og:description" content="We plan a complete surprise date night for you in Annapolis. Simple, seamless, and stress-free.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:title" content="NightOut Annapolis — Turnkey Surprise Date Nights">
+    <meta property="og:description" content="Effortless, pre-paid surprise date nights in Historic Annapolis & Eastport.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80">
+
+    <style>
+        /* HERO WITH BACKGROUND IMAGE RESTORED */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.75)), 
+                        url('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: #ffffff;
+            padding: 80px 20px 60px;
+            text-align: center;
+            border-radius: 0 0 24px 24px;
+        }
+
+        .hero h1 {
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <a href="/" class="logo">NightOut<span>Annapolis</span></a>
+        <!-- TOP NAVIGATION: Cleaned up to only feature the Portal button -->
         <div class="nav-links">
-            <a href="/about/" class="nav-btn secondary-nav">About</a>
-            <a href="/contact/" class="nav-btn secondary-nav">Contact</a>
             <a href="/tracker/" class="nav-btn primary-nav">NightOut Portal</a>
         </div>
     </header>
 
     <div class="hero">
-        <span class="hero-badge">Curated Date Evenings in Annapolis</span>
-        <h1>Stop Planning.<br>Start Experiencing.</h1>
-        <p>We plan a complete surprise date night for you. You just show up and unlock your itinerary steps on your phone as the night goes on.</p>
-        <div class="hero-actions">
-            <a href="/booking/" class="btn">Pick a Date & Time →</a>
-            <a href="/tracker/" class="btn btn-secondary">Open Passcode Portal</a>
-        </div>
+        <span class="hero-badge">Effortless & Pre-Paid</span>
+        <h1>Curated Surprise Date Nights in Annapolis</h1>
+        <p>No planning, no hassle. We book your reservations, pre-pay your activity passes, and unlock your step-by-step itinerary on your phone when your evening begins.</p>
+        <a href="/tracker/" class="btn" style="display: inline-block; width: auto; padding: 14px 28px; text-decoration: none;">Unlock Your Night</a>
     </div>
 
-    <main>
-        <!-- HOW IT WORKS -->
-        <section id="howItWorks">
-            <h2 class="section-title">How It Works in 4 Simple Steps</h2>
-            <p class="section-subtitle">No stress, no planning. We handle all the details for you.</p>
-            
-            <div class="grid-3" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-                <div class="card-with-img">
-                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Pick a date">
-                    <div class="card-body">
-                        <h3>Step 1: Pick Your Evening</h3>
-                        <p>Select your date and preferred start time directly on our website.</p>
-                    </div>
-                </div>
-                <div class="card-with-img">
-                    <img src="https://static3.depositphotos.com/1003631/209/i/450/depositphotos_2099183-stock-photo-fine-table-setting-in-gourmet.jpg" class="card-img" alt="Fill preferences form">
-                    <div class="card-body">
-                        <h3>Step 2: Share Preferences</h3>
-                        <p>Tell us your food choices and dietary needs so we pick the perfect spots for you.</p>
-                    </div>
-                </div>
-                <div class="card-with-img">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Secret Passcode">
-                    <div class="card-body">
-                        <h3>Step 3: Receive Your Code</h3>
-                        <p>We email you a secure passcode. Keep it ready for the night of your event!</p>
-                    </div>
-                </div>
+    <main style="max-width: 800px; padding: 40px 20px;">
+        <h2 style="text-align: center; font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 32px;">How NightOut Works</h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+            <div class="form-modal-card" style="text-align: center; padding: 24px;">
+                <div style="font-size: 32px; margin-bottom: 12px;">🗓️</div>
+                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 8px;">1. Pick Your Date</h3>
+                <p style="font-size: 13.5px; color: var(--text-muted);">Choose your night and share your preferences or dietary restrictions with us.</p>
             </div>
 
-            <!-- PORTAL STEP -->
-            <div style="background: #e6f7f3; border: 2px solid #2b1b36; border-radius: 16px; padding: 24px; margin-top: 24px; text-align: center;">
-                <h3 style="font-size: 20px; font-weight: 900; color: #2b1b36; margin-bottom: 8px;">Step 4: Unlock Your Experience 🔑</h3>
-                <p style="font-size: 15px; color: #2b1b36; max-width: 600px; margin: 0 auto; line-height: 1.6;">
-                    When your date night begins, enter your code into the <strong>NightOut Portal</strong> on your phone.
-                    <br><br>
-                    Your live dashboard reveals where to go, displays your activity passes, and provides exclusive perks at each destination.
-                </p>
+            <div class="form-modal-card" style="text-align: center; padding: 24px;">
+                <div style="font-size: 32px; margin-bottom: 12px;">🔑</div>
+                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 8px;">2. Get Your Code</h3>
+                <p style="font-size: 13.5px; color: var(--text-muted);">We reserve and pre-pay for everything behind the scenes, sending you a unique passcode.</p>
             </div>
-        </section>
 
-        <!-- SAMPLE ITINERARY -->
-        <section style="margin-top: 40px;">
-            <h2 class="section-title">Sample Itinerary Outline</h2>
-            <p class="section-subtitle">Here is an example of how your evening flows.</p>
-
-            <div class="sample-box">
-                <div class="sample-step">
-                    <div class="sample-time">5:30 PM</div>
-                    <div class="sample-desc">
-                        <h4>Stop 1: Evening Activity</h4>
-                        <p>Enjoy a boat ride or guided tour. Your entry passes are pre-paid and ready on your phone.</p>
-                    </div>
-                </div>
-                <div class="sample-step">
-                    <div class="sample-time">7:15 PM</div>
-                    <div class="sample-desc">
-                        <h4>Stop 2: Dinner & Drinks</h4>
-                        <p>Head to a top local restaurant nearby. Show your phone voucher for an included drink or appetizer perk.</p>
-                    </div>
-                </div>
-                <div class="sample-step">
-                    <div class="sample-time">9:00 PM</div>
-                    <div class="sample-desc">
-                        <h4>Stop 3: Nightcap or Dessert</h4>
-                        <p>Wrap up your evening with dessert or drinks near the waterfront.</p>
-                    </div>
-                </div>
+            <div class="form-modal-card" style="text-align: center; padding: 24px;">
+                <div style="font-size: 32px; margin-bottom: 12px;">✨</div>
+                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 8px;">3. Reveal & Enjoy</h3>
+                <p style="font-size: 13.5px; color: var(--text-muted);">Enter your code on your date night to unlock your step-by-step itinerary as you go!</p>
             </div>
-        </section>
-
-        <!-- BOOKING ACTION -->
-        <section id="bookingSection" style="margin-top: 40px;">
-            <div id="bookingCard" class="form-modal-card" style="text-align: center;">
-                <h3 style="font-size: 22px; font-weight: 900; margin-bottom: 8px; color: var(--primary);">Ready for an Effortless Night Out?</h3>
-                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Check current openings for this week and reserve your slot.</p>
-                <a href="/booking/" class="btn" style="font-size: 16px; padding: 14px 28px;">View Available Dates & Times →</a>
-            </div>
-        </section>
-
-        <!-- EMAIL WAITLIST -->
-        <section style="margin-top: 32px;">
-            <div class="form-modal-card" style="background: var(--sage); border: 1px solid rgba(43, 27, 54, 0.08); text-align: center;">
-                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px; color: var(--primary);">Join Our Update List</h3>
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Enter your email below to receive notifications when new reservation slots open up.</p>
-                
-                <form id="landingEmailForm" onsubmit="handleEmailSubmit(event, 'landingStatus', 'Landing Page')" style="display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: 0 auto;">
-                    <input type="email" placeholder="Enter your email address" required style="padding: 12px; font-size: 14px; border-radius: 8px; border: 1px solid var(--border-color);">
-                    <button type="submit" class="btn">Subscribe for Updates</button>
-                </form>
-                <div id="landingStatus" style="display: none; margin-top: 10px; font-size: 13px; font-weight: 700; color: #10b981;">Thank you. You have been added to our list.</div>
-            </div>
-        </section>
-
-        <!-- REFINED FAQ -->
-        <section style="margin-top: 48px;">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Click any question below to read the details.</p>
-
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">What is included in the curation fee? <span class="faq-icon">+</span></div>
-                    <div class="faq-answer">Your fee covers full itinerary planning, reservations, activity entry passes, and exclusive discounts or vouchers at selected partner locations.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">How are dietary restrictions or special accommodations handled? <span class="faq-icon">+</span></div>
-                    <div class="faq-answer">After booking, you will complete a quick preference form where you can list allergies, dietary restrictions, or mobility requirements. We tailor every stop to meet your needs.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">How do we access our itinerary on the night of the date? <span class="faq-icon">+</span></div>
-                    <div class="faq-answer">We send a unique passcode to your email. On your date night, visit the NightOut Portal on your smartphone and enter your code to view your schedule and access vouchers.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Where are the date night locations situated? <span class="faq-icon">+</span></div>
-                    <div class="faq-answer">All curated stops are located within close proximity in Historic Annapolis and Eastport, allowing for an easy walk or short drive between destinations.</div>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
-    <!-- 30-SECOND POPUP MODAL -->
-    <div id="emailPopup" class="popup-overlay">
-        <div class="popup-content">
-            <button class="popup-close" onclick="closePopup()">&times;</button>
-            <h3 style="font-size: 20px; font-weight: 900; color: #2b1b36; margin-bottom: 8px;">Stay Up to Date! 🥂</h3>
-            <p style="font-size: 13.5px; color: #635b70; margin-bottom: 20px; line-height: 1.5;">
-                Be the first to know when new secret date night slots open in Annapolis!
-            </p>
-            
-            <form id="popupEmailForm" onsubmit="handlePopupEmailSubmit(event)" style="display: flex; flex-direction: column; gap: 10px;">
-                <input type="email" placeholder="Enter your email address" required style="padding: 12px; font-size: 14px; border-radius: 8px; border: 1px solid #e8e6f0; outline: none;">
-                <button type="submit" class="btn" style="width: 100%;">Get Updates</button>
-            </form>
-            <div id="popupStatus" style="display: none; margin-top: 12px; font-size: 13px; font-weight: 700; color: #10b981;">
-                Thank you! You have been added to our list.
-            </div>
-        </div>
-    </div>
-
+    <!-- FOOTER: Keeps the About Us and Contact Us links at the bottom -->
     <footer>
         &copy; 2026 NightOut Annapolis. Curated local experiences.
-        <div style="margin-top: 6px;">
+        <div style="margin-top: 8px;">
             <a href="/about/">About Us</a> • <a href="/contact/">Contact Us</a>
         </div>
     </footer>
 
-    <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzK5qTseJuvbgz7uOT056mxcE2o-JESYaNkLnEhcASWbCfFkzxJ-SFBcqgxnPk8jW7-/exec";
-
-        // FAQ Toggle
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => {
-                q.parentElement.classList.toggle('active');
-            });
-        });
-
-        // Form Submission Handler
-        function handleEmailSubmit(event, statusId, sourcePage) {
-            event.preventDefault();
-            const form = event.target;
-            const emailInput = form.querySelector('input[type="email"]');
-            const submitBtn = form.querySelector('button');
-            const statusDiv = document.getElementById(statusId);
-
-            if (!emailInput || !emailInput.value) return;
-
-            const userEmail = emailInput.value.trim();
-            submitBtn.textContent = "Saving...";
-            submitBtn.disabled = true;
-
-            const payload = {
-                action: "subscribeEmail",
-                email: userEmail,
-                source: sourcePage || "Landing Page"
-            };
-
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                mode: "cors",
-                headers: { "Content-Type": "text/plain" },
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.json())
-            .then(data => {
-                statusDiv.style.display = 'block';
-                statusDiv.textContent = "Thank you. You have been added to our list.";
-                form.reset();
-                submitBtn.textContent = "Subscribe for Updates";
-                submitBtn.disabled = false;
-            })
-            .catch(err => {
-                console.error("Error saving email:", err);
-                statusDiv.style.display = 'block';
-                statusDiv.textContent = "Thank you. You have been added to our list.";
-                form.reset();
-                submitBtn.textContent = "Subscribe for Updates";
-                submitBtn.disabled = false;
-            });
-        }
-
-        // POPUP LOGIC (30 Seconds Delay)
-        window.addEventListener('DOMContentLoaded', () => {
-            if (!sessionStorage.getItem('nightout_popup_dismissed')) {
-                setTimeout(() => {
-                    const popup = document.getElementById('emailPopup');
-                    if (popup) popup.classList.add('active');
-                }, 30000);
-            }
-        });
-
-        function closePopup() {
-            const popup = document.getElementById('emailPopup');
-            if (popup) popup.classList.remove('active');
-            sessionStorage.setItem('nightout_popup_dismissed', 'true');
-        }
-
-        function handlePopupEmailSubmit(event) {
-            event.preventDefault();
-            const form = event.target;
-            const emailInput = form.querySelector('input[type="email"]');
-            const submitBtn = form.querySelector('button');
-            const statusDiv = document.getElementById('popupStatus');
-
-            if (!emailInput || !emailInput.value) return;
-
-            const userEmail = emailInput.value.trim();
-            submitBtn.textContent = "Saving...";
-            submitBtn.disabled = true;
-
-            const payload = {
-                action: "subscribeEmail",
-                email: userEmail,
-                source: "30-Sec Popup"
-            };
-
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                mode: "cors",
-                headers: { "Content-Type": "text/plain" },
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.json())
-            .then(data => {
-                statusDiv.style.display = 'block';
-                statusDiv.textContent = "Thank you! You have been added to our list.";
-                form.reset();
-                submitBtn.textContent = "Get Updates";
-                submitBtn.disabled = false;
-
-                setTimeout(() => {
-                    closePopup();
-                }, 2500);
-            })
-            .catch(err => {
-                console.error("Error saving email:", err);
-                statusDiv.style.display = 'block';
-                statusDiv.textContent = "Thank you! You have been added to our list.";
-                form.reset();
-                submitBtn.textContent = "Get Updates";
-                submitBtn.disabled = false;
-
-                setTimeout(() => {
-                    closePopup();
-                }, 2500);
-            });
-        }
-    </script>
 </body>
 </html>

@@ -107,7 +107,7 @@
         </section>
 
         <!-- BOOKING ACTION -->
-        <section id="bookingSection">
+        <section id="bookingSection" style="margin-top: 40px;">
             <div id="bookingCard" class="form-modal-card" style="text-align: center;">
                 <h3 style="font-size: 22px; font-weight: 900; margin-bottom: 8px; color: var(--primary);">Ready for an Effortless Night Out?</h3>
                 <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Check current openings for this week and reserve your slot.</p>
@@ -155,6 +155,25 @@
         </section>
     </main>
 
+    <!-- 30-SECOND POPUP MODAL -->
+    <div id="emailPopup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <h3 style="font-size: 20px; font-weight: 900; color: #2b1b36; margin-bottom: 8px;">Stay Up to Date! 🥂</h3>
+            <p style="font-size: 13.5px; color: #635b70; margin-bottom: 20px; line-height: 1.5;">
+                Be the first to know when new secret date night slots open in Annapolis!
+            </p>
+            
+            <form id="popupEmailForm" onsubmit="handlePopupEmailSubmit(event)" style="display: flex; flex-direction: column; gap: 10px;">
+                <input type="email" placeholder="Enter your email address" required style="padding: 12px; font-size: 14px; border-radius: 8px; border: 1px solid #e8e6f0; outline: none;">
+                <button type="submit" class="btn" style="width: 100%;">Get Updates</button>
+            </form>
+            <div id="popupStatus" style="display: none; margin-top: 12px; font-size: 13px; font-weight: 700; color: #10b981;">
+                Thank you! You have been added to our list.
+            </div>
+        </div>
+    </div>
+
     <footer>
         &copy; 2026 NightOut Annapolis. Curated local experiences.
         <div style="margin-top: 6px;">
@@ -165,12 +184,14 @@
     <script>
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzK5qTseJuvbgz7uOT056mxcE2o-JESYaNkLnEhcASWbCfFkzxJ-SFBcqgxnPk8jW7-/exec";
 
+        // FAQ Toggle
         document.querySelectorAll('.faq-question').forEach(q => {
             q.addEventListener('click', () => {
                 q.parentElement.classList.toggle('active');
             });
         });
 
+        // Form Submission Handler
         function handleEmailSubmit(event, statusId, sourcePage) {
             event.preventDefault();
             const form = event.target;
@@ -211,6 +232,73 @@
                 form.reset();
                 submitBtn.textContent = "Subscribe for Updates";
                 submitBtn.disabled = false;
+            });
+        }
+
+        // POPUP LOGIC (30 Seconds Delay)
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!sessionStorage.getItem('nightout_popup_dismissed')) {
+                setTimeout(() => {
+                    const popup = document.getElementById('emailPopup');
+                    if (popup) popup.classList.add('active');
+                }, 30000);
+            }
+        });
+
+        function closePopup() {
+            const popup = document.getElementById('emailPopup');
+            if (popup) popup.classList.remove('active');
+            sessionStorage.setItem('nightout_popup_dismissed', 'true');
+        }
+
+        function handlePopupEmailSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const emailInput = form.querySelector('input[type="email"]');
+            const submitBtn = form.querySelector('button');
+            const statusDiv = document.getElementById('popupStatus');
+
+            if (!emailInput || !emailInput.value) return;
+
+            const userEmail = emailInput.value.trim();
+            submitBtn.textContent = "Saving...";
+            submitBtn.disabled = true;
+
+            const payload = {
+                action: "subscribeEmail",
+                email: userEmail,
+                source: "30-Sec Popup"
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "cors",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(data => {
+                statusDiv.style.display = 'block';
+                statusDiv.textContent = "Thank you! You have been added to our list.";
+                form.reset();
+                submitBtn.textContent = "Get Updates";
+                submitBtn.disabled = false;
+
+                setTimeout(() => {
+                    closePopup();
+                }, 2500);
+            })
+            .catch(err => {
+                console.error("Error saving email:", err);
+                statusDiv.style.display = 'block';
+                statusDiv.textContent = "Thank you! You have been added to our list.";
+                form.reset();
+                submitBtn.textContent = "Get Updates";
+                submitBtn.disabled = false;
+
+                setTimeout(() => {
+                    closePopup();
+                }, 2500);
             });
         }
     </script>

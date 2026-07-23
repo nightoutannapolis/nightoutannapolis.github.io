@@ -7,41 +7,145 @@
     
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="/styles.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nightoutannapolis.github.io/contact/">
+    <meta property="og:title" content="Contact NightOut Annapolis">
+    <meta property="og:description" content="Have questions about your surprise date night? Get in touch with our team directly.">
 </head>
 <body>
 
     <header>
         <a href="/" class="logo">NightOut<span>Annapolis</span></a>
         <div class="nav-links">
-            <a href="/about/" class="nav-btn">About Us</a>
-            <a href="/contact/" class="nav-btn" style="background: var(--accent); color: #ffffff;">Contact</a>
+            <a href="/about/" class="nav-btn secondary-nav">About</a>
+            <a href="/contact/" class="nav-btn secondary-nav">Contact</a>
+            <a href="/tracker/" class="nav-btn primary-nav">NightOut Portal</a>
         </div>
     </header>
 
-    <main style="max-width: 580px;">
-        <div class="card" style="text-align: center;">
-            <h1>Get in Touch</h1>
-            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">Have questions about a booking, partnership inquiries, or dietary requests? Our local concierge team is here to help.</p>
+    <div class="hero" style="padding: 36px 20px 24px;">
+        <span class="hero-badge">Get in Touch</span>
+        <h1>We're Here to Help</h1>
+        <p>Have a question about an upcoming booking, partner inquiries, or custom date itineraries? Reach out to us below.</p>
+    </div>
 
-            <div class="email-box">
-                <div style="font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Direct Concierge Email</div>
-                <div class="email-address">nightoutannapolis@gmail.com</div>
+    <main style="max-width: 700px;">
+        <!-- CONTACT INFORMATION CARD -->
+        <div class="form-modal-card" style="margin-bottom: 24px;">
+            <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 16px; color: var(--primary);">Direct Contact Details</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="background: var(--sage); padding: 10px; border-radius: 8px; font-size: 18px;">📞</div>
+                    <div>
+                        <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Phone & Text</div>
+                        <a href="tel:4433339276" style="font-size: 16px; font-weight: 800; color: var(--primary); text-decoration: none;">(443) 333-9276</a>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="background: var(--sage); padding: 10px; border-radius: 8px; font-size: 18px;">✉️</div>
+                    <div>
+                        <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Email</div>
+                        <a href="mailto:nightoutannapolis@gmail.com" style="font-size: 16px; font-weight: 800; color: var(--primary); text-decoration: none;">nightoutannapolis@gmail.com</a>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="background: var(--sage); padding: 10px; border-radius: 8px; font-size: 18px;">📍</div>
+                    <div>
+                        <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Location</div>
+                        <div style="font-size: 15px; font-weight: 700; color: var(--primary);">Historic Annapolis & Eastport, MD</div>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <p style="font-size: 13px; color: var(--text-muted); margin-top: 20px;">
-                We respond to all inquiries within 24 hours. If you already have an active reservation, please include your Passcode in your email.
-            </p>
+        <!-- MESSAGE FORM -->
+        <div class="form-modal-card">
+            <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 8px; color: var(--primary);">Send Us a Message</h2>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px;">Fill out the form below and we will get back to you promptly.</p>
 
-            <a href="/" style="display: inline-block; margin-top: 18px; color: var(--primary); font-size: 13px; font-weight: 700; text-decoration: none;">← Return to Main Page</a>
+            <form id="contactForm" onsubmit="handleContactSubmit(event)" style="display: flex; flex-direction: column; gap: 14px;">
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 4px;">Full Name</label>
+                    <input type="text" name="name" placeholder="Your name" required style="width: 100%; padding: 12px; font-size: 14px; border-radius: 8px; border: 1px solid var(--border-color); outline: none;">
+                </div>
+
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 4px;">Email Address</label>
+                    <input type="email" name="email" placeholder="Your email address" required style="width: 100%; padding: 12px; font-size: 14px; border-radius: 8px; border: 1px solid var(--border-color); outline: none;">
+                </div>
+
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 4px;">Phone Number (Optional)</label>
+                    <input type="tel" name="phone" placeholder="(443) 000-0000" style="width: 100%; padding: 12px; font-size: 14px; border-radius: 8px; border: 1px solid var(--border-color); outline: none;">
+                </div>
+
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 4px;">Message</label>
+                    <textarea name="message" rows="4" placeholder="How can we help you?" required style="width: 100%; padding: 12px; font-size: 14px; border-radius: 8px; border: 1px solid var(--border-color); outline: none; resize: vertical;"></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; margin-top: 6px;">Send Message</button>
+            </form>
+
+            <div id="contactStatus" style="display: none; margin-top: 14px; font-size: 14px; font-weight: 700; color: #10b981; text-align: center;">
+                Thank you! Your message has been sent. We will reach out shortly.
+            </div>
         </div>
     </main>
 
     <footer>
-        &copy; 2026 NightOut Annapolis. Made by locals.
-        <div style="margin-top: 8px;">
-            <a href="/">Home</a> • <a href="/about/">About Us</a>
+        &copy; 2026 NightOut Annapolis. Curated local experiences.
+        <div style="margin-top: 6px;">
+            <a href="/about/">About Us</a> • <a href="/contact/">Contact Us</a>
         </div>
     </footer>
 
+    <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzK5qTseJuvbgz7uOT056mxcE2o-JESYaNkLnEhcASWbCfFkzxJ-SFBcqgxnPk8jW7-/exec";
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitBtn = form.querySelector('button');
+            const statusDiv = document.getElementById('contactStatus');
+
+            submitBtn.textContent = "Sending...";
+            submitBtn.disabled = true;
+
+            const payload = {
+                action: "contactMessage",
+                name: form.name.value,
+                email: form.email.value,
+                phone: form.phone.value || "N/A",
+                message: form.message.value,
+                source: "Contact Page"
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "cors",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(data => {
+                statusDiv.style.display = 'block';
+                form.reset();
+                submitBtn.textContent = "Send Message";
+                submitBtn.disabled = false;
+            })
+            .catch(err => {
+                console.error("Error submitting contact form:", err);
+                statusDiv.style.display = 'block';
+                form.reset();
+                submitBtn.textContent = "Send Message";
+                submitBtn.disabled = false;
+            });
+        }
+    </script>
 </body>
 </html>

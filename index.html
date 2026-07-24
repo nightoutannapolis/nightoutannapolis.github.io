@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NightOut Annapolis — Turnkey Surprise Date Nights</title>
+    <title>NightOut Annapolis — Date Nights Made Easy</title>
 
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="/styles.css">
@@ -55,6 +55,14 @@
             letter-spacing: 0.5px;
             margin-bottom: 16px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         /* FEATURE PHOTO GRID */
@@ -145,13 +153,37 @@
             color: var(--text-muted);
             line-height: 1.4;
         }
+
+        /* BOTTOM CTA BOX */
+        .cta-banner {
+            background: var(--primary);
+            color: #ffffff;
+            border-radius: 20px;
+            padding: 40px 24px;
+            text-align: center;
+            margin-top: 56px;
+        }
+
+        .cta-banner h2 {
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .cta-banner p {
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 15px;
+            max-width: 500px;
+            margin: 0 auto 24px;
+        }
     </style>
 </head>
 <body>
 
     <header>
         <a href="/" class="logo">NightOut<span>Annapolis</span></a>
-        <!-- TOP NAVIGATION: Only Portal Button -->
+        <!-- TOP NAVIGATION: Portal Link -->
         <div class="nav-links">
             <a href="/tracker/" class="nav-btn primary-nav">NightOut Portal</a>
         </div>
@@ -160,8 +192,13 @@
     <div class="hero">
         <span class="hero-badge">Turnkey & Pre-Paid</span>
         <h1>Curated Surprise Date Nights in Annapolis</h1>
-        <p>Whether you're celebrating an milestone anniversary, a big birthday, or simply want an effortless, high-end night out—we craft unforgettable, secret itineraries tailored just for you.</p>
-        <a href="/tracker/" class="btn" style="display: inline-block; width: auto; padding: 14px 32px; text-decoration: none; font-size: 16px;">Unlock Your Night</a>
+        <p>Whether you're celebrating a milestone anniversary, a big birthday, or simply want an effortless, high-end night out—we craft unforgettable, secret itineraries tailored just for you.</p>
+        
+        <!-- HERO BUTTONS (BOOK NOW + PORTAL) -->
+        <div class="hero-actions">
+            <a href="/booking/" class="btn" style="display: inline-block; width: auto; padding: 14px 32px; text-decoration: none; font-size: 16px; background: var(--accent); color: #ffffff;">Book Your Night Out</a>
+            <a href="/tracker/" class="btn" style="display: inline-block; width: auto; padding: 14px 24px; text-decoration: none; font-size: 16px; background: rgba(255, 255, 255, 0.15); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.3);">Already Booked? Enter Portal</a>
+        </div>
     </div>
 
     <main style="max-width: 900px; padding: 40px 20px;">
@@ -252,6 +289,13 @@
                 </div>
             </div>
         </section>
+
+        <!-- BOTTOM CALL TO ACTION BANNER -->
+        <div class="cta-banner">
+            <h2>Ready for an Unforgettable Night?</h2>
+            <p>Select your date, tell us your preferences, and let us build your perfect surprise date night in Annapolis.</p>
+            <a href="/booking/" class="btn" style="display: inline-block; width: auto; padding: 14px 36px; text-decoration: none; font-size: 16px; background: #ffffff; color: var(--primary); font-weight: 800;">Book Your Date Night</a>
+        </div>
 
     </main>
 
